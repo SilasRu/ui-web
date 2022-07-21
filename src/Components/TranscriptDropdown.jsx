@@ -1,17 +1,10 @@
 import React from 'react';
-import './Dropdown.css';
+import './TranscriptDropdown.css';
 import SelectSearch from 'react-select-search';
 
-
-const Dropdown = () => {
+const TranscriptDropdown = (props) => {
   const searchInput = React.useRef();
-  const options = [
-    { name: 'Workshop Three', value: '1' },
-    { name: 'Workshop Two', value: '2' },
-    { name: 'Workshop Three', value: '3' },
-    { name: 'Workshop Four', value: '4' },
-    { name: 'Workshop Five', value: '5' },
-  ];
+  const options = props.transcriptList.map((i) => ({ name: i, value: `${i}.json` }));
 
   const handleFilter = (items) => {
     return (searchValue) => {
@@ -26,10 +19,10 @@ const Dropdown = () => {
     console.log('CHANGE:');
   };
   return (
-    <div className="tests">
-      <SelectSearch ref={searchInput} filterOptions={handleFilter} options={options} search placeholder="Choose your language" onChange={handleChange} />
+    <div className="transcript-dropdown">
+      <SelectSearch ref={searchInput} filterOptions={handleFilter} options={options} search placeholder="Choose Transcript" onChange={handleChange} />
     </div>
   );
 };
 
-export default Dropdown;
+export default TranscriptDropdown;

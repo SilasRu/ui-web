@@ -1,5 +1,5 @@
-.test {
-  font-family: sans-serif;
+.transcript-dropdown {
+  font-family: poppins;
   text-align: center;
   width: 50%;
   height: 50vh;
@@ -13,7 +13,7 @@
 .select-search {
   width: 300px;
   position: relative;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: poppins;
   box-sizing: border-box;
 }
 
@@ -54,7 +54,7 @@
   box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   border-radius: 3px;
   outline: none;
-  font-family: "Noto Sans", sans-serif;
+  font-family: poppins;
   font-size: 14px;
   text-align: left;
   text-overflow: ellipsis;
@@ -108,7 +108,7 @@
   background: #fff;
   border: none;
   outline: none;
-  font-family: "Noto Sans", sans-serif;
+  font-family: poppins;
   font-size: 14px;
   text-align: left;
   cursor: pointer;
