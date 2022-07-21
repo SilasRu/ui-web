@@ -37,7 +37,7 @@
         "enableTooltip": true
     },
     "networkGraphOpts": {
-        "autoResize": true,
+        "autoResize": false,
         "height": "300px",
         "width": "300px",
         "clickToUse": false,

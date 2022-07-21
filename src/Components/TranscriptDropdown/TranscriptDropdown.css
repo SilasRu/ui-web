@@ -1,9 +1,9 @@
 .transcript-dropdown {
   font-family: poppins;
   text-align: center;
-  width: 50%;
-  height: 50vh;
-  margin: 40px auto;
+  width: 300px;
+  /* height: 50vh; */
+  /* margin: 40px auto; */
   padding: 20px;
 }
 
@@ -11,7 +11,7 @@
  * Main wrapper
  */
 .select-search {
-  width: 300px;
+  width: 320px;
   position: relative;
   font-family: poppins;
   box-sizing: border-box;

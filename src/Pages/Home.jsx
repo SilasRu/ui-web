@@ -1,7 +1,6 @@
 import TranscriptDropdown from '../Components/TranscriptDropdown/TranscriptDropdown';
 import SpeakerNetwork from '../Components/SpeakerNetwork/SpeakerNetwork';
 
-
 import './Home.css';
 import { getTranscriptList, getSentiments } from '../Services/DataFetching.js';
 import { toNetworkGraph } from '../Services/dataProcessing';
@@ -15,9 +14,12 @@ const Home = () => {
   console.log(speakerGraphData)
   // return <TranscriptDropdown transcriptList={transcriptList} />;
   return (
-    <div className='info-containers'>
-      <SpeakerNetwork speakerGraphData={speakerGraphData}/>
-      <Sentiment sentimentData={sentimentData}/>
+    <div>
+      <TranscriptDropdown transcriptList={transcriptList} />
+      <div className='info-cards'>
+        <SpeakerNetwork speakerGraphData={speakerGraphData}/>
+        <Sentiment sentimentData={sentimentData}/>
+      </div>
     </div>
   )
 };

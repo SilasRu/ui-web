@@ -5,7 +5,7 @@ import './SpeakerNetwork.css'
 
 const SpeakerNetwork = (props) => {
   return (
-    <div className="speaker-network">
+    <div className="info-card-item">
       <Graph graph={props.speakerGraphData} options={opts.networkGraphOpts} />
     </div>
   );
