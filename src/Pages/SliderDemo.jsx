@@ -1,7 +1,7 @@
 import React from 'react';
 import './SliderDemo.css';
-import FrameSlider from '../Components/FrameSlider';
-import WordGrid from '../Components/WordGrid';
+import FrameSlider from '../Components/FrameSlider/FrameSlider';
+import WordGrid from '../Components/WordGrid/WordGrid';
 
 import demoWords from '../Assets/Data/slider-demo-words.json';
 import demoPhrases from '../Assets/Data/slider-demo-phrases.json';

@@ -1,0 +1,73 @@
+{
+    "mainCloudOpts": {
+        "colors": "black",
+        "transitionDuration": 500,
+        "padding": 10,
+        "rotationAngles": [
+            0,
+            90
+        ],
+        "rotations": 1,
+        "scale": "sqrt",
+        "spiral": "rectangular",
+        "fontSizes": [
+            10,
+            40
+        ],
+        "deterministic": true,
+        "enableTooltip": true
+    },
+    "sliderCloudOpts": {
+        "colors": "black",
+        "transitionDuration": 500,
+        "minSize": [500,500],
+        "padding": 10,
+        "rotationAngles": [
+            0,
+            0
+        ],
+        "rotations": 0,
+        "scale": "linear",
+        "spiral": "rectangular",
+        "fontSizes": [
+            10,
+            30
+        ],
+        "deterministic": true,
+        "enableTooltip": true
+    },
+    "networkGraphOpts": {
+        "autoResize": true,
+        "height": "300px",
+        "width": "300px",
+        "clickToUse": false,
+        "nodes": {
+            "shape": "dot",
+            "scaling": {
+                "min": 10,
+                "max": 60
+            }
+        },
+        "layout": {
+            "hierarchical": false,
+            "randomSeed": 42,
+            "improvedLayout": true
+        },
+        "interaction": {
+            "dragView": false,
+            "zoomView": false,
+            "selectable": false,
+            "dragNodes": true,
+            "hideEdgesOnDrag": true
+        },
+        "edges": {
+            "smooth": false,
+            "color": "#000000",
+            "arrows": {
+                "to": {
+                    "enabled": false
+                }
+            }
+        }
+    }
+}

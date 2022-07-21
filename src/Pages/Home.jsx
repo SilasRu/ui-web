@@ -1,10 +1,25 @@
-import TranscriptDropdown from '../Components/TranscriptDropdown';
+import TranscriptDropdown from '../Components/TranscriptDropdown/TranscriptDropdown';
+import SpeakerNetwork from '../Components/SpeakerNetwork/SpeakerNetwork';
+
+
 import './Home.css';
-import { getTranscriptList } from '../Services/dataService.js';
+import { getTranscriptList, getSentiments } from '../Services/DataFetching.js';
+import { toNetworkGraph } from '../Services/dataProcessing';
+import t from '../Assets/Data/Transcripts/nexoya daily standup 2022-03-17.json'
+import Sentiment from '../Components/Sentiment/Sentiment';
 
 const Home = () => {
   const transcriptList = getTranscriptList();
-  return <TranscriptDropdown transcriptList={transcriptList} />;
+  const sentimentData = getSentiments();
+  const speakerGraphData = toNetworkGraph(t)
+  console.log(speakerGraphData)
+  // return <TranscriptDropdown transcriptList={transcriptList} />;
+  return (
+    <div className='info-containers'>
+      <SpeakerNetwork speakerGraphData={speakerGraphData}/>
+      <Sentiment sentimentData={sentimentData}/>
+    </div>
+  )
 };
 
 export default Home;
