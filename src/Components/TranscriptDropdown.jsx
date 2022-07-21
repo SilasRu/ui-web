@@ -5,6 +5,7 @@ import SelectSearch from 'react-select-search';
 const TranscriptDropdown = (props) => {
   const searchInput = React.useRef();
   const options = props.transcriptList.map((i) => ({ name: i, value: `${i}.json` }));
+  const [selectedTranscript, setSelectedTranscript] = React.useState(null)
 
   const handleFilter = (items) => {
     return (searchValue) => {
@@ -12,15 +13,13 @@ const TranscriptDropdown = (props) => {
       return items.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
     };
   };
-
-  const handleChange = (...args) => {
-    // searchInput.current.querySelector("input").value = "";
-    console.log('ARGS:', args);
-    console.log('CHANGE:');
+  const handleChange = (item) => {
+    setSelectedTranscript(item);
   };
+  console.log(selectedTranscript)
   return (
     <div className="transcript-dropdown">
-      <SelectSearch ref={searchInput} filterOptions={handleFilter} options={options} search placeholder="Choose Transcript" onChange={handleChange} />
+      <SelectSearch ref={searchInput} filterOptions={handleFilter} options={options} search placeholder="Choose Transcript" onChange={handleChange} value={selectedTranscript}/>
     </div>
   );
 };
