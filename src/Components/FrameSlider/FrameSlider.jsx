@@ -5,7 +5,6 @@ import './FrameSlider.css';
 const WordSlider = (props) => {
   return (
     <div className="slider">
-      <p>Frame slider</p>
       <Slider
         min={0}
         max={Object.keys(props.marks).length - 1}

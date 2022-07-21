@@ -36,6 +36,7 @@ const WordGrid = (props) => {
       <div key="f" style={{ border: 'solid 1px #ddd' }}>
         {_.get(props.words, '[5].text', '')}
       </div>
+
       {/* <div key="g" style={{ background: "grey" }}>{_.get(props.words, '[6].text', '')}</div>
       <div key="h" style={{ background: "grey" }}>{_.get(props.words, '[7].text', '')}</div>
       <div key="i" style={{ background: "grey" }}>{_.get(props.words, '[8].text', '')}</div> */}

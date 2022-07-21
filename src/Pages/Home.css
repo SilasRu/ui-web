@@ -4,3 +4,16 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.slider-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.slider-bullet {
+    height: 100px;
+    text-align: center;
+    list-style-position: outside;
+}

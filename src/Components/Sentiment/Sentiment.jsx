@@ -11,16 +11,16 @@ const Sentiment = (props) => {
   ];
   return (
     <div className="info-card-item">
-      <span className="transcript-meta-title">nexoya daily standup 2022-03-17</span>
+      <span className="transcript-meta-title">Transcript Stats</span>
       <div className="transcript-meta-stats">
         <div className='transcript-meta-pie'>
           <PieChart data={data} lineWidth={50} paddingAngle={2} style={{ height: '10vw' }} />
           <span>Sentiment</span>
         </div>
         <div className="transcript-meta-stats-numbers">
-          <span className="transcript-meta-stats-length">Length: 100 min</span>
-          <span className="transcript-meta-stats-speakers">Speakers: 5</span>
-          <span className="transcript-meta-stats-heatness">Heatness: 0.5</span>
+          <span className="transcript-meta-stats-length">Length: <b>100 min</b></span>
+          <span className="transcript-meta-stats-speakers">Speakers: <b>5</b></span>
+          <span className="transcript-meta-stats-heatness">Heatness: <b>0.5</b></span>
         </div>
       </div>
     </div>
