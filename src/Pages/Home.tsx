@@ -1,5 +1,5 @@
 import './Home.css';
-import React from 'react';
+import * as React from 'react';
 import TranscriptDropdown from '../Components/TranscriptDropdown/TranscriptDropdown';
 import SpeakerNetwork from '../Components/SpeakerNetwork/SpeakerNetwork';
 import Sentiment from '../Components/Sentiment/Sentiment';
@@ -18,6 +18,7 @@ const Home = () => {
   const transcriptList = getTranscriptList();
   const sentimentData = getSentiments();
   const speakerGraphData = toNetworkGraph(t)
+
 
   const [sliderPosition, setSliderPosition] = React.useState(0);
   const [words, setWords] = React.useState(demoWords[`frame_0`]['textrank'].map((word) => ({ text: word, value: 10 })));

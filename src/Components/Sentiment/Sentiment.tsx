@@ -1,4 +1,3 @@
-import React from 'react';
 import './Sentiment.css';
 import { PieChart } from 'react-minimal-pie-chart';
 

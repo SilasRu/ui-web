@@ -1,4 +1,3 @@
-import React from "react";
 import opts from '../../settings.json'
 import Graph from "react-graph-vis";
 import './SpeakerNetwork.css'

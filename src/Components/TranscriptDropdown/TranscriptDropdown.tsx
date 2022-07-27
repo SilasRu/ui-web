@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import './TranscriptDropdown.css';
 import SelectSearch from 'react-select-search';
 
@@ -16,7 +16,6 @@ const TranscriptDropdown = (props) => {
   const handleChange = (item) => {
     setSelectedTranscript(item);
   };
-  console.log(selectedTranscript)
   return (
     <div className="transcript-dropdown">
       <SelectSearch ref={searchInput} filterOptions={handleFilter} options={options} search placeholder="Choose Transcript" onChange={handleChange} value={selectedTranscript}/>

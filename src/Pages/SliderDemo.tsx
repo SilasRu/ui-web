@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import './SliderDemo.css';
 import FrameSlider from '../Components/FrameSlider/FrameSlider';
 import WordGrid from '../Components/WordGrid/WordGrid';
 
-import demoWords from '../Assets/Data/slider-demo-words.json';
-import demoPhrases from '../Assets/Data/slider-demo-phrases.json';
+import * as demoWords from '../Assets/Data/slider-demo-words.json';
+import * as demoPhrases from '../Assets/Data/slider-demo-phrases.json';
 
 const SliderDemo = (props) => {
   const [sliderPosition, setSliderPosition] = React.useState(0);
