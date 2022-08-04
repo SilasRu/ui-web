@@ -1,6 +1,7 @@
 import './Sentiment.css';
 import { PieChart } from 'react-minimal-pie-chart';
 
+
 const Sentiment = (props) => {
   const positive = props.sentimentData.filter((i) => i.label === 'POSITIVE');
   const negative = props.sentimentData.filter((i) => i.label === 'NEGATIVE');

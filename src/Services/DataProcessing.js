@@ -1,6 +1,6 @@
 const COLORS = ["#03045e", "#023e8a", "#0077b6", "#0096c7", "#00b4d8", "#48cae4", "#90e0ef", "#ade8f4", "#caf0f8"];
 
-const toNetworkGraph = (transcript, statistics) => {
+const toNetworkGraph = (transcript) => {
   const nodes = transcript.speaker_info.map((speaker, i) => {
     const id = speaker.id;
     const label = speaker.name;

@@ -4,8 +4,8 @@ import SelectSearch from 'react-select-search';
 
 const TranscriptDropdown = (props) => {
   const searchInput = React.useRef();
-  const options = props.transcriptList.map((i) => ({ name: i, value: `${i}.json` }));
-  const [selectedTranscript, setSelectedTranscript] = React.useState(null)
+  const options = props.transcriptList.map((i) => ({ name: i, value: i }));
+  const [selectedTranscript, setSelectedTranscript] = React.useState<string>(null)
 
   const handleFilter = (items) => {
     return (searchValue) => {
@@ -15,10 +15,19 @@ const TranscriptDropdown = (props) => {
   };
   const handleChange = (item) => {
     setSelectedTranscript(item);
+    props.handleTranscriptImport(item)
   };
   return (
     <div className="transcript-dropdown">
-      <SelectSearch ref={searchInput} filterOptions={handleFilter} options={options} search placeholder="Choose Transcript" onChange={handleChange} value={selectedTranscript}/>
+      <SelectSearch
+        ref={searchInput}
+        filterOptions={handleFilter}
+        options={options}
+        search
+        placeholder="Choose Transcript"
+        onChange={handleChange}
+        value={selectedTranscript}
+      />
     </div>
   );
 };

@@ -2,14 +2,14 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './FrameSlider.css';
 
-interface WordSliderProps {
-  marks: Object,
+interface FrameSliderProps {
+  marks: object,
   sliderPosition: number,
   sliderChanged: (event: number[] | number) => void
 }
 
 
-const WordSlider = (props: WordSliderProps) => {
+const FrameSlider = (props: FrameSliderProps) => {
   return (
     <div className="slider">
       <Slider
@@ -25,4 +25,4 @@ const WordSlider = (props: WordSliderProps) => {
   );
 };
 
-export default WordSlider;
+export default FrameSlider;
