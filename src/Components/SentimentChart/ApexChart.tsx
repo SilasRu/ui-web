@@ -39,7 +39,7 @@ class ApexChart extends React.Component<{}, ApexChartInterface> {
           type: 'area',
           stacked: false,
           toolbar: {
-            show: true,
+            show: false,
           },
         },
         dataLabels: {
