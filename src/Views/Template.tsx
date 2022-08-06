@@ -1,8 +1,8 @@
 import './Template.css'
 import Widget from "src/Components/Widget/widget"
-import Featured from 'src/Components/Featured/Featured'
-import Chart from 'src/Components/Chart/Chart'
+import Chart from 'src/Components/SentimentChart/SentimentChart'
 import Table from 'src/Components/Table/Table'
+import SpeakerNetwork from 'src/Components/SpeakerNetwork/SpeakerNetwork'
 
 const Template = () => {
     return (
@@ -14,7 +14,7 @@ const Template = () => {
             <Widget type='balance'/>
         </div>
         <div className="charts">
-            <Featured/>
+            <SpeakerNetwork/>
             <Chart/>
         </div>
         <div className="listContainer">

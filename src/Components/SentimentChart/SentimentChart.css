@@ -1,0 +1,18 @@
+.sentiment-chart {
+    flex: 3;
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201,201,201,0.47);
+    padding: 10px;
+    color: black;
+}
+
+.sentiment-chart-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.sentiment-chart-desc {
+    font-weight: 300;
+    font-size: 12px;
+    color: gray;
+  }

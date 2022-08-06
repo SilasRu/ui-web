@@ -1,14 +1,36 @@
-.info-card-item {
-  display: flex;
-  align-items: center;
-  margin: 0px 20px;
+.speaker-network {
+  flex: 1;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
-  width: 300px;
-  height: 300px;
+}
+
+.speaker-network-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: black;
+}
+
+.speaker-network-top-desc {
+  font-weight: 300;
+  font-size: 12px;
+  color: gray;
+}
+
+.speaker-network-top-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.speaker-network-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.speaker-network-bottom-chart {
+  width: max-content;
 }
