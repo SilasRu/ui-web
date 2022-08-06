@@ -1,10 +1,12 @@
 import * as React from 'react';
 import './TranscriptDropdown.css';
+import scripts from '../../Assets/Data/Transcripts/transcript-list.json';
 import SelectSearch from 'react-select-search';
 
 const TranscriptDropdown = (props) => {
   const searchInput = React.useRef();
-  const options = props.transcriptList.map((i) => ({ name: i, value: i }));
+  const transcriptList = scripts.transcripts
+  const options = transcriptList.map((i) => ({ name: i, value: i }));
   const [selectedTranscript, setSelectedTranscript] = React.useState<string>(null)
 
   const handleFilter = (items) => {

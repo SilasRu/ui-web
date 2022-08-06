@@ -7,23 +7,22 @@ import FrameSlider from '../Components/FrameSlider/FrameSlider';
 import WordGrid from '../Components/WordGrid/WordGrid';
 import Initial from 'src/Components/Initial/Initial';
 
-import { DataApi, getTranscriptList, getSentiments } from '../Services/DataFetching.js';
+import { DataApi, getSentiments } from '../Services/DataFetching.js';
 import { toNetworkGraph } from '../Services/dataProcessing';
-import { ITranscript } from '../Services/types';
+import { ITranscriptData } from '../Services/types';
 
 import t from '../Assets/Data/Transcripts/nexoya daily standup 2022-03-17.json';
 import demoWords from '../Assets/Data/slider-demo-words.json';
 import demoPhrases from '../Assets/Data/slider-demo-phrases.json';
 
 const Home = () => {
-  const transcriptList = getTranscriptList();
-  const [transcript, setTranscript] = React.useState<ITranscript | {}>({});
-  const transcriptSelected = Object.keys(transcript).length > 0;
-  const dataApi = new DataApi({transcript: null, baseUrl:process.env.REACT_APP_BASE_URL, sectionLength:175})
-  
+  const dataApi = new DataApi({ transcript: null, baseUrl: process.env.REACT_APP_BASE_URL, sectionLength: 175 });
+  const [transcriptData, setTranscriptData] = React.useState<ITranscriptData | {}>({});
+  const transcriptSelected = Object.keys(transcriptData).length > 0;
+
   const handleTranscriptImport = async (transcriptName: string) => {
-      await dataApi.importTranscript(transcriptName)
-      setTranscript(dataApi.transcript);
+    const transcriptData = await dataApi.fetchAll(transcriptName);
+    setTranscriptData(transcriptData);
   };
 
   const sentimentData = getSentiments();
@@ -45,9 +44,9 @@ const Home = () => {
 
   return (
     <div>
-      <TranscriptDropdown transcriptList={transcriptList} handleTranscriptImport={handleTranscriptImport} />
+      <TranscriptDropdown handleTranscriptImport={handleTranscriptImport} />
       {transcriptSelected ? (
-        <div>
+        <>
           <div className="info-cards">
             <Sentiment sentimentData={sentimentData} />
             <WordGrid words={words} />
@@ -57,7 +56,7 @@ const Home = () => {
             <ul className="slider-bullet">{phrases}</ul>
             <FrameSlider sliderPosition={sliderPosition} sliderChanged={sliderChanged} marks={marks} />
           </div>
-        </div>
+        </>
       ) : (
         <Initial />
       )}

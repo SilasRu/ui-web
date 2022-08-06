@@ -55,3 +55,11 @@ export interface IEntities {
   dimensions: EntityDimensions;
   entities: EntityObject[];
 }
+
+export interface ITranscriptData {
+  transcript: ITranscript
+  sentiments: ISentiments
+  keyphrases: IKeyphrases
+  keywords: IKeywords
+  entities: IEntities
+}

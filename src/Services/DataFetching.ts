@@ -1,10 +1,5 @@
-import transcriptList from '../Assets/Data/Transcripts/transcript-list.json';
 import sentiments from '../Assets/Data/sentiment-demo.json';
 import { DataApiConfig, ITranscript, ISentiments, IKeyphrases, IKeywords, IEntities } from './types';
-
-const getTranscriptList = () => {
-  return transcriptList.transcripts;
-};
 
 const getSentiments = () => {
   return sentiments;
@@ -19,10 +14,6 @@ export class DataApi implements DataApiConfig {
     this.transcript = config.transcript;
     this.baseUrl = config.baseUrl;
     this.sectionLength = config.sectionLength;
-  }
-
-  public getTranscriptList = () => {
-    return transcriptList.transcripts;
   }
 
   public importTranscript = async (transcriptName: string) => {
@@ -44,7 +35,6 @@ export class DataApi implements DataApiConfig {
     const url = new URL(`${this.baseUrl}/sentiments/`);
     url.searchParams.append('dimensions', String(true));
     if (this.sectionLength) url.searchParams.append('section_length', String(this.sectionLength));
-
     return this.fetchAPI(url);
   };
 
@@ -72,6 +62,15 @@ export class DataApi implements DataApiConfig {
     return this.fetchAPI(url);
   };
 
+  public fetchAll = async (transcriptName: string) => {
+    await this.importTranscript(transcriptName);
+    const sentiments = await this.fetchSentiments()
+    const keyphrases = await this.fetchKeyphrases()
+    const keywords = await this.fetchKeywords()
+    const entities = await this.fetchEntities()
+    return {transcript: this.transcript, sentiments, keyphrases, keywords, entities}
+  }
+
 }
 
-export { getTranscriptList, getSentiments };
+export { getSentiments };
