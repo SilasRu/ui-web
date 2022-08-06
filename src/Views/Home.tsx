@@ -1,7 +1,6 @@
 import './Home.css';
 import * as React from 'react';
 import TranscriptDropdown from '../Components/TranscriptDropdown/TranscriptDropdown';
-import Sentiment from '../Components/Sentiment/Sentiment';
 import FrameSlider from '../Components/FrameSlider/FrameSlider';
 import WordGrid from '../Components/WordGrid/WordGrid';
 import Initial from 'src/Components/Initial/Initial';
@@ -46,7 +45,6 @@ const Home = () => {
       {transcriptSelected ? (
         <>
           <div className="info-cards">
-            <Sentiment sentimentData={sentimentData} />
             <WordGrid words={words} />
           </div>
           <div className="slider-content">

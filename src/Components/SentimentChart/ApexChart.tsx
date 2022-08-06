@@ -16,19 +16,18 @@ interface ISentimentSeries {
 class ApexChart extends React.Component<{}, ApexChartInterface> {
   public state: ApexChartInterface;
   public sentimentSeries: ISentimentSeries
-  constructor(props) {
+  constructor(props: any) {
     super(props);
-    this.sentimentSeries = props.sentimentSeries
 
     this.state = {
       series: [
         {
           name: 'Positive',
-          data: this.sentimentSeries.positive
+          data: props.sentimentSeries.positive
         },
         {
           name: 'Negative',
-          data: this.sentimentSeries.negative
+          data: props.sentimentSeries.negative
         },
       ],
       options: {
@@ -59,7 +58,7 @@ class ApexChart extends React.Component<{}, ApexChartInterface> {
         },
         xaxis: {
           type: 'datetime',
-          categories: this.sentimentSeries.interval,
+          categories: props.sentimentSeries.interval,
           tooltip: {
             enabled: false,
           },
