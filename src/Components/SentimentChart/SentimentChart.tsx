@@ -40,7 +40,7 @@ class ApexChart extends React.Component<{}, ApexChartInterface> {
           type: 'area',
           stacked: false,
           toolbar: {
-            show: false,
+            show: true,
           },
         },
         dataLabels: {
@@ -76,7 +76,7 @@ class ApexChart extends React.Component<{}, ApexChartInterface> {
   }
 
   render() {
-    return <Chart options={this.state.options} series={this.state.series} type="area" width={500} height={320} />;
+    return <Chart options={this.state.options} series={this.state.series} type="area" width='100%' height='240%'/>;
   }
 }
 
