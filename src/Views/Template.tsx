@@ -6,6 +6,8 @@ import SpeakerNetwork from 'src/Components/SpeakerNetwork/SpeakerNetwork';
 import Keywords from 'src/Components/Keywords/Keywords';
 import Navbar from 'src/Components/Navbar/Navbar';
 import Entities from 'src/Components/Entities/Entities';
+import BarChart from 'src/Components/BarChart/BarChart';
+
 
 const Template = () => {
   return (
@@ -27,7 +29,7 @@ const Template = () => {
         <div className="charts">
           <SpeakerNetwork />
           <Keywords />
-          <Widget type="user" />
+          <BarChart/>
         </div>
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>

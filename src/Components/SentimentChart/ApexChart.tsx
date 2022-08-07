@@ -44,7 +44,7 @@ const computeState = (props) => {
         type: 'area',
         stacked: false,
         toolbar: {
-          show: false,
+          show: true,
         },
       },
       dataLabels: {
