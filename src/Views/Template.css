@@ -20,3 +20,7 @@
     color: grey;
     margin-bottom: 15px;
 }
+
+.homeContainer {
+    flex: 6
+}
