@@ -12,13 +12,13 @@ const Keywords = () => {
       <Stack spacing={1} alignItems="center">
         <Stack direction="row" spacing={1}>
           <Chip label="pre-planning session life" color="primary" />
-          <Chip label="made analysis" color="success" />
-          <Chip label="average client" color="success" />
+          <Chip label="made analysis" color="primary" variant="outlined"/>
+          <Chip label="average client" color="primary" variant="outlined"/>
         </Stack>
         <Stack direction="row" spacing={1}>
           <Chip label="41 percent last 25" color="primary" variant="outlined" />
-          <Chip label="intelligence showed" color="error" variant="outlined" />
-          <Chip label="priceless" color="error" variant="outlined" />
+          <Chip label="intelligence showed" color="primary" variant="outlined" />
+          <Chip label="priceless" color="primary" variant="outlined" />
         </Stack>
       </Stack>
       </div>

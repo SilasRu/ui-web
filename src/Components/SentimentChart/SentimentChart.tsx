@@ -14,7 +14,7 @@ const Chart = () => {
   React.useEffect(() => {
       dataApi.fetchAll('nexoya daily standup 2022-03-17').then(res=>setTranscriptData(res))
   }, [])
-  
+  console.log(transcriptData)
   return (
     <div className='sentiment-chart'>
       <div className="sentiment-chart-title">Sentiment over time</div>

@@ -7,15 +7,14 @@ import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalance
 
 const Widget = ({ type }) => {
   let data;
-  //   temp
-  const amount = 100;
   const diff = 20;
   switch (type) {
     case 'user':
       data = {
-        title: 'USERS',
+        title: 'Participants',
         isMoney: false,
-        link: 'See all users',
+        link: 'See all participants',
+        amount: '7',
         icon: <PersonOutlinedIcon className="icon" style={{
             color: 'crimson',
             backgroundColor: 'rgba(255,0,0,0.2)'
@@ -60,7 +59,7 @@ const Widget = ({ type }) => {
     <div className="widget">
       <div className="left">
         <span className="title">{data.title}</span>
-        <span className="counter">{data.isMoney && '$'} {amount}</span>
+        <span className="counter">{data.amount ? data.amount : 100}</span>
         <span className="link">{data.link}</span>
       </div>
 
