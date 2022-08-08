@@ -13,7 +13,7 @@ const Navbar = () => {
             <TranscriptDropdown handleTranscriptImport={handleTranscriptImport}/>
         </div>
         <div className="navbar-items">
-        <MediationOutlinedIcon/>
+        <MediationOutlinedIcon color='primary'/>
           <div className="navbar-item">
             <p className='navbar-title'>Transcript Analyzer</p>
           </div>

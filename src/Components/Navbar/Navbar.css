@@ -3,6 +3,8 @@
     border-bottom: 0.5px solid rgb(231,228,228);
     display: flex;
     align-items: center;
+    /* background-color: #000C66 */
+    background-color: #1a237e
 }
 
 .navbar-wrapper {
@@ -22,4 +24,5 @@
 .navbar-title {
     font-size: 14px;
     font-weight: 500;
+    color: white;
 }

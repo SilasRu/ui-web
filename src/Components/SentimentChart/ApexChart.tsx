@@ -1,8 +1,11 @@
 import Chart from 'react-apexcharts';
 import React from 'react';
 import * as dateFns from 'date-fns';
+import { useTheme } from '@mui/material/styles';
+
 
 const computeState = (props) => {
+  const theme = useTheme()
   const startTimestamp = new Date(props.transcriptData.transcript.date);
   const durationInSec = parseInt(props.transcriptData.transcript.transcript.content[0].content.slice(-1)[0].attrs.endTime);
   const endTimestamp = dateFns.addSeconds(startTimestamp, durationInSec);
@@ -36,9 +39,9 @@ const computeState = (props) => {
       },
     ],
     options: {
-      colors: ['#3ECC1B', '#FF0018'],
+      colors: [theme.palette.success.main, theme.palette.error.main],
       grid: {
-        show: true,
+        show: false,
       },
       chart: {
         type: 'area',
@@ -57,8 +60,8 @@ const computeState = (props) => {
       fill: {
         type: 'gradient',
         gradient: {
-          opacityFrom: 1,
-          opacityTo: 0.6,
+          opacityFrom: 0.2,
+          opacityTo: 0.4,
         },
       },
       xaxis: {

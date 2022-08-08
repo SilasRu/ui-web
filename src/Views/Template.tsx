@@ -8,28 +8,32 @@ import Entities from 'src/Components/Entities/Entities';
 import BarChart from 'src/Components/BarChart/BarChart';
 import SummaryCard from 'src/Components/SummaryCard/SummaryCard';
 
+import { ThemeProvider } from '@mui/material/styles';
+import mainTheme from '../theme';
 
 const Template = () => {
   return (
-    <div>
-      <div className="home-container">
-        <Navbar />
-        <div className="home-top">
-          <SummaryCard/>
-          <Entities />
-          <SentimentChart />
-        </div>
-        <div className="home-bottom">
-          <SpeakerNetwork />
-          <Keywords />
-          <BarChart/>
-        </div>
-        <div className="home-list">
-          <div className="home-list-title">Latest Transactions</div>
-          <Table />
+    <ThemeProvider theme={mainTheme}>
+      <div>
+        <div className="home-container">
+          <Navbar />
+          <div className="home-top">
+            <SummaryCard />
+            <Entities />
+            <SentimentChart />
+          </div>
+          <div className="home-bottom">
+            <SpeakerNetwork />
+            <Keywords />
+            <BarChart />
+          </div>
+          <div className="home-list">
+            <div className="home-list-title">Latest Transactions</div>
+            <Table />
+          </div>
         </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
