@@ -19,7 +19,7 @@ const state = {
         show: false,
       },
     },
-    colors: ['#008FFB', '#FF4560'],
+    colors: ['#1976d2', '#FF0018'],
     plotOptions: {
       bar: {
         horizontal: true,

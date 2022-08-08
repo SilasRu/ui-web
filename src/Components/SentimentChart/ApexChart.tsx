@@ -44,7 +44,7 @@ const computeState = (props) => {
         type: 'area',
         stacked: false,
         toolbar: {
-          show: true,
+          show: false,
         },
       },
       dataLabels: {
@@ -57,8 +57,8 @@ const computeState = (props) => {
       fill: {
         type: 'gradient',
         gradient: {
-          opacityFrom: 0.6,
-          opacityTo: 0.8,
+          opacityFrom: 1,
+          opacityTo: 0.6,
         },
       },
       xaxis: {

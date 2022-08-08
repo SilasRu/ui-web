@@ -7,14 +7,14 @@ const EntityChip = () => {
         <Stack spacing={1} alignItems="center">
         <Stack direction="row" spacing={1}>
           <Chip label="LinkedIn API" color="success" />
-          <Chip label="Luca" color="secondary" variant="outlined"/>
+          <Chip label="Luca" color="success" variant="outlined"/>
         </Stack>
         <Stack direction="row" spacing={1}>
-          <Chip label="development Channel" color="error" variant="outlined" />
-          <Chip label="Iway" color="info" variant="outlined" />
+          <Chip label="development Channel" color="success" variant="outlined" />
+          <Chip label="Iway" color="success" variant="outlined" />
         </Stack>
         <Stack direction="row" spacing={1}>
-          <Chip label="Klara" color="warning" variant="outlined" />
+          <Chip label="Klara" color="success" variant="outlined" />
           <Chip label="GoWago" color="success" variant="outlined" />
         </Stack>
       </Stack>
