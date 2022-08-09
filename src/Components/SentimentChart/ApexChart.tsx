@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 const computeState = (props) => {
   const theme = useTheme()
   const startTimestamp = new Date(props.transcriptData.transcript.date);
-  const durationInSec = parseInt(props.transcriptData.transcript.transcript.content[0].content.slice(-1)[0].attrs.endTime);
+  const durationInSec = parseInt(props.transcriptData.transcript.meeting_length);
   const endTimestamp = dateFns.addSeconds(startTimestamp, durationInSec);
   const xInterval = dateFns.eachMinuteOfInterval({ start: startTimestamp, end: endTimestamp });
 

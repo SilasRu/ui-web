@@ -4,7 +4,9 @@ export interface ITranscript {
   start_times: number[];
   end_times: number[];
   date: string;
-  transcript: object;
+  meeting_length: number;
+  speaker_turns: number;
+  transcript: any;
 }
 
 export interface DataApiConfig {

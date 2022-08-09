@@ -19,6 +19,8 @@ export class DataApi implements DataApiConfig {
   public importTranscript = async (transcriptName: string) => {
     const transcript = await import (`../Assets/Data/Transcripts/${transcriptName}.json`)
     this.transcript = transcript.default
+    this.transcript.meeting_length = this.transcript?.transcript?.content[0]?.content?.slice(-1)[0]?.content?.slice(-1)[0]?.attrs?.endTime ?? 0
+    this.transcript.speaker_turns = this.transcript?.transcript?.content[0]?.content?.length ?? 0
   }
 
   private fetchAPI = async (url: URL): Promise<any> => {
