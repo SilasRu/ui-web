@@ -1,6 +1,7 @@
 import './Navbar.css';
 import TranscriptDropdown from '../TranscriptDropdown/TranscriptDropdown'
 import MediationOutlinedIcon from '@mui/icons-material/MediationOutlined';
+import DimensionSelector from '../DimensionSelector/DimensionSelector';
 
 const Navbar = () => {
   const handleTranscriptImport = async (transcriptName: string) => {
@@ -13,6 +14,7 @@ const Navbar = () => {
             <TranscriptDropdown handleTranscriptImport={handleTranscriptImport}/>
         </div>
         <div className="navbar-items">
+        <DimensionSelector/>
         <MediationOutlinedIcon color='primary'/>
           <div className="navbar-item">
             <p className='navbar-title'>Transcript Analyzer</p>

@@ -1,6 +1,5 @@
 import './SummaryCard.css';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import HourglassEmptyOutlinedIcon from '@mui/icons-material/HourglassEmptyOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 
