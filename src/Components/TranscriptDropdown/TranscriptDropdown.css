@@ -118,18 +118,18 @@
 }
 
 .select-search__option.is-selected {
-  background: #2fcc8b;
+  background: #1976d2;
   color: #fff;
 }
 
 .select-search__option.is-highlighted,
 .select-search__option:not(.is-selected):hover {
-  background: rgba(47, 204, 139, 0.1);
+  background: #d2dfed;
 }
 
 .select-search__option.is-highlighted.is-selected,
 .select-search__option.is-selected:hover {
-  background: #2eb378;
+  background: #1976d2;
   color: #fff;
 }
 
@@ -187,7 +187,7 @@
 }
 
 .select-search:not(.select-search--multiple) .select-search__input:hover {
-  border-color: #2fcc8b;
+  border-color: #1976d2;
 }
 
 .select-search:not(.select-search--multiple) .select-search__select {
