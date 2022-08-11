@@ -2,8 +2,10 @@ import './Keywords.css'
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import KeyphraseList from '../KeyphraseList/KeyphraseList';
+import { ITranscriptData } from 'src/Services/types';
 
-const Keywords = () => {
+const Keywords = (props: {transcriptData: ITranscriptData}) => {
+  console.log(props.transcriptData)
   return (
     <div className="keywords">
       <h1 className='keywords-top-title'>Keyphrases</h1>

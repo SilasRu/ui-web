@@ -1,19 +1,48 @@
 import Chart from 'react-apexcharts';
 import './Barchart.css';
 import { useTheme } from '@mui/material/styles';
+import * as dateFns from 'date-fns';
 
-const BarChart = () => {
+const BarChart = (props) => {
   const theme = useTheme()
+  const startTimestamp = new Date(props.transcriptData.transcript.date);
+  const durationInSec = parseInt(props.transcriptData.transcript.meeting_length);
+  const endTimestamp = dateFns.addSeconds(startTimestamp, durationInSec);
+  const xInterval = dateFns.eachMinuteOfInterval({ start: startTimestamp, end: endTimestamp });
+
+  
+  const {transcript} = props.transcriptData
+  const averageLengthPerTurn = transcript.meeting_length / transcript.speaker_turns
+  const turnDurations = transcript.transcript.content[0].content.map(i=>(i.content.slice(-1)[0].attrs.endTime + i.content[0].attrs.startTime) / 2)
+  const chunkSize = Math.ceil(turnDurations.length / xInterval.length);
+
+
+  const series = {
+    monologue: [],
+    dialogue: []
+  }
+  for (let i = 0; i < turnDurations.length; i += chunkSize) {
+    const chunk = turnDurations.slice(i, i + chunkSize);
+    const score = (chunk.slice(-1)[0] - chunk[0]) / averageLengthPerTurn
+    const threshold = 1
+    if (score > threshold){
+      series.monologue.push(score)
+      series.dialogue.push(0)
+    } else {
+      series.dialogue.push(score - threshold)
+      series.monologue.push(0)
+    }
+  }
 
   const state = {
     series: [
       {
           name: 'Dialogue',
-          data: [-0.8, -1.05, -1.06, -0.1, -1.4, -2.2, -5, -3.7, -3.96, -4.22, -4.3, -4.4],
+          data: series.dialogue,
         },
       {
         name: 'Monologue',
-        data: [0.4, 0.65, 0.76, 3.88, 1.5, 2.1, 2.9, 4.8, 5, 4.2, 4, 4.3],
+        data: series.monologue,
       },
     ],
     options: {
@@ -57,6 +86,8 @@ const BarChart = () => {
       },
     },
   };
+
+
   return (
     <div className="bar-chart">
       <div className="bar-chart-title">Heatness</div>

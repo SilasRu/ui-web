@@ -43,8 +43,8 @@ const Template = () => {
             </div>
             <div className="home-bottom">
               <SpeakerNetwork transcriptData={transcriptData}/>
-              <Keywords />
-              <BarChart />
+              <Keywords transcriptData={transcriptData}/>
+              <BarChart transcriptData={transcriptData}/>
             </div>
             <div className="home-list">
               <div className="home-list-title">Latest Transactions</div>

@@ -28,7 +28,7 @@ const PolarAreaChart = (props: { entityGroups: object; setSelectedEntities: (num
       yaxis: {
         labels: {
           formatter: (value) => {
-            return value.toFixed(1);
+            return value.toFixed(0);
           },
         },
       },

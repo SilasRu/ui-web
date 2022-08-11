@@ -13,7 +13,7 @@ const computeState = (props) => {
 
   const allSentiments = props.transcriptData.sentiments.sentiments;
   const chunkSize = Math.ceil(allSentiments.length / xInterval.length);
-
+  
   const sentimentSeries = {
     positive: [],
     negative: [],
