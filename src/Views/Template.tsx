@@ -5,10 +5,10 @@ import React from "react";
 import SentimentChart from 'src/Components/SentimentChart/SentimentChart';
 import Table from 'src/Components/Table/Table';
 import SpeakerNetwork from 'src/Components/SpeakerNetwork/SpeakerNetwork';
-import Keywords from 'src/Components/Keywords/Keywords';
+import Keyphrases from 'src/Components/Keyphrases/Keyphrases';
 import Navbar from 'src/Components/Navbar/Navbar';
 import Entities from 'src/Components/Entities/Entities';
-import BarChart from 'src/Components/BarChart/BarChart';
+import Keywords from 'src/Components/Keywords/Keywords';
 import SummaryCard from 'src/Components/SummaryCard/SummaryCard';
 
 import { ThemeProvider } from '@mui/material/styles';
@@ -22,6 +22,21 @@ const Template = () => {
   const config = {transcript:null, baseUrl, sectionLength}
   const dataApi = new DataApi(config)
   const [transcriptData, setTranscriptData] = React.useState<ITranscriptData | null>(null);
+  const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number>(0)
+  
+  const handleTimeframeClick = (event) => {
+    if (event === 'PREVIOUS') {
+      if (currentTimeFrame !== 0) {
+        setCurrentTimeFrame(prev => prev -1)
+      }
+    }
+    else if (event === 'NEXT') {
+      if (currentTimeFrame !== Object.keys(transcriptData.keywords.dimensions.time).length -1) {
+        setCurrentTimeFrame(prev => prev + 1)
+      }
+    }
+  };
+
 
   React.useEffect(() => {
     dataApi.fetchAll('nexoya daily standup 2022-05-25').then(res=>setTranscriptData(res))
@@ -43,8 +58,8 @@ const Template = () => {
             </div>
             <div className="home-bottom">
               <SpeakerNetwork transcriptData={transcriptData}/>
-              <Keywords transcriptData={transcriptData}/>
-              <BarChart transcriptData={transcriptData}/>
+              <Keyphrases transcriptData={transcriptData} currentTimeFrame={currentTimeFrame}/>
+              <Keywords transcriptData={transcriptData} handleTimeframeClick={handleTimeframeClick} currentTimeFrame={currentTimeFrame}/>
             </div>
             <div className="home-list">
               <div className="home-list-title">Latest Transactions</div>

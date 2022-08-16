@@ -3,4 +3,5 @@
   font-family: Poppins;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --card_title_color: #1a237e;
 }

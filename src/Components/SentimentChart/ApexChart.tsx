@@ -12,30 +12,33 @@ const computeState = (props) => {
   const xInterval = dateFns.eachMinuteOfInterval({ start: startTimestamp, end: endTimestamp });
 
   const allSentiments = props.transcriptData.sentiments.sentiments;
-  const chunkSize = Math.ceil(allSentiments.length / xInterval.length);
-  
-  const sentimentSeries = {
-    positive: [],
-    negative: [],
+  const series = {
+    sentiment: [],
+    heatness: [],
     interval: xInterval.map((i) => i.toISOString()),
   };
-  for (let i = 0; i < allSentiments.length; i += chunkSize) {
-    const chunk = allSentiments.slice(i, i + chunkSize);
-    const positive = chunk.filter((j) => j.label === 'POSITIVE');
-    const negative = chunk.filter((j) => j.label === 'NEGATIVE');
-    sentimentSeries.positive.push(positive.length);
-    sentimentSeries.negative.push(negative.length);
+
+  const speakerChangeTimes = props.transcriptData.transcript.transcript.content[0].content.map(i=>i.content.slice(-1)[0].attrs.endTime)
+
+  for (let i = 0; i < xInterval.length; i ++) {
+    const sentimentChunk = allSentiments.filter(f=>f.timestamp > i*60 && f.timestamp < (i+1)*60);
+    const positive = sentimentChunk.filter((j) => j.label === 'POSITIVE');
+    const negative = sentimentChunk.filter((j) => j.label === 'NEGATIVE');
+    series.sentiment.push(positive.length - negative.length);
+
+    const heatnessChunk = speakerChangeTimes.filter(f=>f > i*60 && f < (i+1)*60);
+    series.heatness.push(heatnessChunk.length);
   }
 
   const state = {
     series: [
       {
-        name: 'Positive',
-        data: sentimentSeries.positive,
+        name: 'Sentiment',
+        data: series.sentiment
       },
       {
-        name: 'Negative',
-        data: sentimentSeries.negative,
+        name: 'Heatness',
+        data: series.heatness
       },
     ],
     options: {
@@ -66,7 +69,7 @@ const computeState = (props) => {
       },
       xaxis: {
         type: 'datetime',
-        categories: sentimentSeries.interval,
+        categories: series.interval,
         tooltip: {
           enabled: false,
         },

@@ -8,6 +8,7 @@
   .summary-card-top-title {
     font-size: 16px;
     font-weight: 600;
+    color: var(--card_title_color);
   }
   
   .summary-card-top-desc {
