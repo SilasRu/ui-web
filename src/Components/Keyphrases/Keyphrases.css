@@ -6,6 +6,12 @@
   color: black;
 }
 
+.keyphrases-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .keyphrases-top-desc {
   font-weight: 300;
   font-size: 12px;

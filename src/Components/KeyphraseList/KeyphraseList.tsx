@@ -9,7 +9,6 @@ import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
 import { ListItemIcon } from '@mui/material';
 
 const KeyphraseList = (props) => {
-  console.log(props);
   return (
     <List sx={{ width: '100%', maxWidth: '90%', overflow: 'auto', maxHeight: '230px', bgcolor: 'background.paper' }}>
       {props.keyphrasesSelected.map((sentence, key) => {

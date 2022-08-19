@@ -5,14 +5,14 @@ import { styled } from '@mui/material/styles';
 
 
 const colorCodes: Array<'primary' | 'success' | 'secondary' | 'error' | 'warning' | 'default' | 'info'> = ['primary', 'success', 'secondary', 'error', 'warning'];
+const ListItem = styled('li')(({ theme }) => ({
+  margin: theme.spacing(0.5),
+}));
+
 
 const EntityChip = (props: { entityGroups: object; selectedEntities: number }) => {
   const entityGroupKey = Object.keys(props.entityGroups)[props.selectedEntities];
   const entityGroupToDisplay = props.entityGroups[entityGroupKey];
-
-  const ListItem = styled('li')(({ theme }) => ({
-    margin: theme.spacing(0.5),
-  }));
 
   return (
     <div className="entity-chips">
