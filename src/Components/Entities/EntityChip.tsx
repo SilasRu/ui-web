@@ -3,16 +3,21 @@ import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
-
 const colorCodes: Array<'primary' | 'success' | 'secondary' | 'error' | 'warning' | 'default' | 'info'> = ['primary', 'success', 'secondary', 'error', 'warning'];
+const colorMap = {
+  PER: 0,
+  LOC: 1,
+  ORG: 2,
+  MISC: 3,
+  'Non-speaker PERS': 4,
+};
 const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-
-const EntityChip = (props: { entityGroups: object; selectedEntities: number }) => {
-  const entityGroupKey = Object.keys(props.entityGroups)[props.selectedEntities];
-  const entityGroupToDisplay = props.entityGroups[entityGroupKey];
+const EntityChip = (props: { entityGroups: object; selectedEntities: number | null }) => {
+  const groups = ['PER', 'LOC', 'ORG', 'MISC', 'Non-speaker PERS'];
+  const entityGroupToDisplay = props.selectedEntities !== null ? props.entityGroups[groups[props.selectedEntities]] : Object.values(props.entityGroups).flat();
 
   return (
     <div className="entity-chips">
@@ -33,7 +38,12 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number }) =
         {entityGroupToDisplay.map((data, key) => {
           return (
             <ListItem key={key}>
-              <Chip key={key} label={data.word} color={colorCodes[props.selectedEntities]} variant="outlined"></Chip>
+              <Chip
+                key={key}
+                label={data.word}
+                color={data.entity_group === 'PER' && !data.in_speakers ? 'warning' : colorCodes[colorMap[data.entity_group]]}
+                variant="outlined"
+              ></Chip>
             </ListItem>
           );
         })}

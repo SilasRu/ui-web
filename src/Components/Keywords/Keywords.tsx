@@ -3,8 +3,10 @@ import * as React from 'react';
 import { ITranscriptData } from 'src/Services/types';
 import KeywordsList from '../KeywordsList/KeywordsList';
 
-const Keywords = (props: { transcriptData: ITranscriptData; currentTimeFrame: number }) => {
-  const selectedKeywords = props.transcriptData.keywords.dimensions.time[props.currentTimeFrame];
+const Keywords = (props: { transcriptData: ITranscriptData; currentTimeFrame: number | null }) => {
+  const selectedKeywords =
+    props.currentTimeFrame !== null ? props.transcriptData.keywords.dimensions.time[props.currentTimeFrame] : Object.values(props.transcriptData.keywords.dimensions.time).flat();
+
   return (
     <div className="keywords">
       <div className="keywords-title">Keywords</div>

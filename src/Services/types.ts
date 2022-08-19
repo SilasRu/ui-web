@@ -47,10 +47,10 @@ interface EntityObject {
 }
 interface EntityDimensions extends IDimensions {
   time: {
-    [key: string]: EntityObject;
+    [key: string]: EntityObject[];
   };
   speaker: {
-    [key: string]: EntityObject;
+    [key: string]: EntityObject[];
   };
 }
 export interface IEntities {

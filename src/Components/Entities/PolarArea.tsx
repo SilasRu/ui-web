@@ -3,9 +3,19 @@ import React from 'react';
 import { useTheme } from '@mui/material/styles';
 
 const PolarAreaChart = (props: { entityGroups: object; setSelectedEntities: (number) => void }) => {
+  const groups = {
+    'PER': 0,
+    'LOC': 0,
+    'ORG': 0,
+    'MISC': 0,
+    'Non-speaker PERS': 0,
+  }
+  for (const key of Object.keys(props.entityGroups)) {
+    groups[key] = props.entityGroups[key].reduce((acc, obj) => acc + obj.occurrence, 0)
+  }
   const theme = useTheme();
   const state = {
-    series: Object.values(props.entityGroups).map((i) => i.length),
+    series: Object.values(groups).flat(),
     options: {
       chart: {
         events: {
@@ -14,7 +24,7 @@ const PolarAreaChart = (props: { entityGroups: object; setSelectedEntities: (num
           },
         },
       },
-      labels: Object.keys(props.entityGroups),
+      labels: Object.keys(groups),
       colors: [theme.palette.primary.main, theme.palette.success.main, theme.palette.secondary.main, theme.palette.error.main, theme.palette.warning.main],
       legend: {
         show: false,

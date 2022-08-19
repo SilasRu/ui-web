@@ -22,18 +22,24 @@ const Template = () => {
   const config = { transcript: null, baseUrl, sectionLength };
   const dataApi = new DataApi(config);
   const [transcriptData, setTranscriptData] = React.useState<ITranscriptData | null>(null);
-  const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number>(0);
+  const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number | null>(null);
 
   const handleTimeframeClick = (event) => {
-    console.log(event)
+    setSelectedEntities(null)
     if (event === 'PREVIOUS') {
-      if (currentTimeFrame !== 0) {
+      if (currentTimeFrame === null) {
+        setCurrentTimeFrame(() => 0);
+      } else if (currentTimeFrame !== 0) {
         setCurrentTimeFrame(() => currentTimeFrame - 1);
       }
     } else if (event === 'NEXT') {
-      if (currentTimeFrame !== Object.keys(transcriptData.keywords.dimensions.time).length - 1) {
+      if (currentTimeFrame === null) {
+        setCurrentTimeFrame(() => 0);
+      } else if (currentTimeFrame !== Object.keys(transcriptData.keywords.dimensions.time).length - 1) {
         setCurrentTimeFrame(() => currentTimeFrame + 1);
       }
+    } else if (event === 'RESET') {
+      setCurrentTimeFrame(() => null);
     }
   };
 
@@ -43,6 +49,7 @@ const Template = () => {
   const handleTranscriptImport = async (transcriptName: string) => {
     dataApi.fetchAll(transcriptName).then((res) => setTranscriptData(res));
   };
+  const [selectedEntities, setSelectedEntities] = React.useState<number>(null);
 
   return (
     <ThemeProvider theme={mainTheme}>
@@ -52,7 +59,7 @@ const Template = () => {
             <Navbar handleTranscriptImport={handleTranscriptImport} />
             <div className="home-top">
               <SummaryCard transcriptData={transcriptData} />
-              <Entities transcriptData={transcriptData} />
+              <Entities transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} setSelectedEntities={setSelectedEntities} selectedEntities={selectedEntities} />
               <SentimentChart transcriptData={transcriptData} />
             </div>
             <div className="home-bottom">
