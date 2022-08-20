@@ -1,4 +1,5 @@
 import { useTheme } from '@mui/material/styles';
+import _ from 'lodash'
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -17,7 +18,7 @@ const ListItem = styled('li')(({ theme }) => ({
 
 const EntityChip = (props: { entityGroups: object; selectedEntities: number | null }) => {
   const groups = ['PER', 'LOC', 'ORG', 'MISC', 'Non-speaker PERS'];
-  const entityGroupToDisplay = props.selectedEntities !== null ? props.entityGroups[groups[props.selectedEntities]] : Object.values(props.entityGroups).flat();
+  const entityGroupToDisplay = props.selectedEntities !== null ? props.entityGroups[groups[props.selectedEntities]] : _.uniqBy(Object.values(props.entityGroups).flat(), 'word') ;
 
   return (
     <div className="entity-chips">

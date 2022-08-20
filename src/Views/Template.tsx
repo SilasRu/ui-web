@@ -42,14 +42,14 @@ const Template = () => {
       setCurrentTimeFrame(() => null);
     }
   };
-
+  const [selectedEntities, setSelectedEntities] = React.useState<number>(null);
   React.useEffect(() => {
     dataApi.fetchAll('nexoya daily standup 2022-05-25').then((res) => setTranscriptData(res));
   }, []);
   const handleTranscriptImport = async (transcriptName: string) => {
     dataApi.fetchAll(transcriptName).then((res) => setTranscriptData(res));
+    setSelectedEntities(null)
   };
-  const [selectedEntities, setSelectedEntities] = React.useState<number>(null);
 
   return (
     <ThemeProvider theme={mainTheme}>
@@ -60,10 +60,10 @@ const Template = () => {
             <div className="home-top">
               <SummaryCard transcriptData={transcriptData} />
               <Entities transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} setSelectedEntities={setSelectedEntities} selectedEntities={selectedEntities} />
-              <SentimentChart transcriptData={transcriptData} />
+              <SentimentChart transcriptData={transcriptData} currentTimeFrame={currentTimeFrame}/>
             </div>
             <div className="home-bottom">
-              <SpeakerNetwork transcriptData={transcriptData} />
+              <SpeakerNetwork transcriptData={transcriptData} currentTimeFrame={currentTimeFrame}/>
               <Keyphrases transcriptData={transcriptData} handleTimeframeClick={handleTimeframeClick} currentTimeFrame={currentTimeFrame} />
               <Keywords transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} />
             </div>

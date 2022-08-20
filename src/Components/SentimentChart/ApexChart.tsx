@@ -1,14 +1,17 @@
-import Chart from 'react-apexcharts';
-import React from 'react';
 import * as dateFns from 'date-fns';
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
+import { ApexOptions } from 'apexcharts';
+import ReactApexChart from 'react-apexcharts';
 
 
-const computeState = (props) => {
+
+
+const SentimentChart = (props) => {
   const theme = useTheme()
   const startTimestamp = new Date(props.transcriptData.transcript.date);
-  const durationInSec = parseInt(props.transcriptData.transcript.meeting_length);
-  const endTimestamp = dateFns.addSeconds(startTimestamp, durationInSec);
+  const durationInSec = props.transcriptData.transcript.meeting_length;
+  const endTimestamp = dateFns.addSeconds(startTimestamp, durationInSec);  
   const xInterval = dateFns.eachMinuteOfInterval({ start: startTimestamp, end: endTimestamp });
 
   const allSentiments = props.transcriptData.sentiments.sentiments;
@@ -30,7 +33,27 @@ const computeState = (props) => {
     series.heatness.push(heatnessChunk.length);
   }
 
-  const state = {
+  let timeframeAnnontations
+  if(props.currentTimeFrame !== null) {
+    timeframeAnnontations =         {
+      x: new Date(series.interval[props.currentTimeFrame]).getTime(),
+      x2: new Date(series.interval[props.currentTimeFrame + 1]).getTime(),
+      fillColor: theme.charts.cyan,
+      label: {
+        text: 'Timeframe',
+        orientation: 'horizontal',
+        textAnchor: 'start',
+        borderWidth: 0,
+        offsetY: - 15,
+        offsetX: - 4,
+        style: {
+          fontFamily: 'Poppins'
+        }
+      }
+    }
+  }
+
+  const chartData: ApexOptions = {
     series: [
       {
         name: 'Sentiment',
@@ -41,7 +64,10 @@ const computeState = (props) => {
         data: series.heatness
       },
     ],
-    options: {
+    
+      annotations: {
+        xaxis: [timeframeAnnontations]
+      },
       colors: [theme.palette.success.main, theme.palette.error.main],
       grid: {
         show: false,
@@ -60,13 +86,13 @@ const computeState = (props) => {
         curve: 'smooth',
         width: 2,
       },
-      fill: {
-        type: 'gradient',
-        gradient: {
-          opacityFrom: 0.2,
-          opacityTo: 0.4,
-        },
-      },
+      // fill: {
+      //   type: 'gradient',
+      //   gradient: {
+      //     opacityFrom: 0.2,
+      //     opacityTo: 0.4,
+      //   },
+      // },
       xaxis: {
         type: 'datetime',
         categories: series.interval,
@@ -81,17 +107,8 @@ const computeState = (props) => {
           format: 'HH:mm:ss',
         },
       },
-    },
   };
-  return state;
-};
-
-const SentimentChart = (props) => {
-  let state;
-  if (props.transcriptData.sentiments) {
-    state = computeState(props);
-  }
-  return <div>{state ? <Chart options={state.options} series={state.series} type="area" width="100%" height="120%" /> : <></>}</div>;
+  return <div>{chartData ? <ReactApexChart options={chartData} series={chartData.series} type="area" width="100%" height="120%" /> : <></>}</div>;
 };
 
 export default SentimentChart;

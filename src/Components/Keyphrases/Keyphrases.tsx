@@ -8,6 +8,8 @@ import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
 
 const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeClick: (string) => void; currentTimeFrame: number | null }) => {
   const keyphrasesSelected = props.currentTimeFrame !== null ? props.transcriptData.keyphrases.dimensions.time[props.currentTimeFrame] : Object.values(props.transcriptData.keyphrases.dimensions.time).flat();
+  const selectedKeywords =
+    props.currentTimeFrame !== null ? props.transcriptData.keywords.dimensions.time[props.currentTimeFrame] : Object.values(props.transcriptData.keywords.dimensions.time).flat();
 
   return (
     <div className="keyphrases">
@@ -37,7 +39,7 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
         </div>
       </div>
       <div className="keyphrases-bottom">
-        <KeyphraseList keyphrasesSelected={keyphrasesSelected} />
+        <KeyphraseList keyphrasesSelected={keyphrasesSelected} selectedKeywords={selectedKeywords} />
       </div>
     </div>
   );

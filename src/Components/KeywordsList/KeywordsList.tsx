@@ -19,8 +19,8 @@ const KeywordsList = (props) => {
         p: 0.5,
         m: 0,
         border: '10px',
-        maxHeight: '250px',
-        boxShadow: '2px 4px 10px 1px rgba(201, 201, 201, 0.47)',
+        maxHeight: '280px',
+        boxShadow: '10px 10px 10px rgba(0, 0, 0, 0)',
         fontWeight: 600,
       }}
       component="ul"

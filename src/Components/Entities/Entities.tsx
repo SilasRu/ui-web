@@ -12,8 +12,12 @@ const Entities = (props: { transcriptData: ITranscriptData; currentTimeFrame: nu
   } else {
     entityGroups = _.groupBy(props.transcriptData.entities.entities, 'entity_group');
   }
-  if ('PER' in entityGroups) entityGroups['Non-speaker PERS'] = entityGroups['PER'].filter((i) => !i.in_speakers);
-  console.log(entityGroups)
+  if ('PER' in entityGroups) {
+    entityGroups['Non-speaker PERS'] = entityGroups['PER'].filter((i) => !i.in_speakers);
+    entityGroups['PER'] = entityGroups['PER'].filter((i) => i.in_speakers);
+    // TODO: Speakers darker color in same tone
+  }
+
   return (
     <div className="entities">
       <div className="entities-top">

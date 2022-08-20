@@ -1,33 +1,46 @@
 import './KeyphraseList.css';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material';
+import Chip from '@mui/material/Chip';
 
-import ArrowRightOutlinedIcon from '@mui/icons-material/ArrowRightOutlined';
-import { ListItemIcon } from '@mui/material';
-
-const KeyphraseList = (props) => {
+const KeyphraseList = (props) => {  
+  const theme = useTheme();
   return (
-    <List sx={{ width: '100%', maxWidth: '90%', overflow: 'auto', maxHeight: '230px', bgcolor: 'background.paper' }}>
+    <List
+      sx={{
+        width: '100%',
+        maxWidth: '100%',
+        overflow: 'auto',
+        maxHeight: '240px',
+        bgcolor: '#dddddd40',
+        borderRadius: '10px',
+      }}
+    >
       {props.keyphrasesSelected.map((sentence, key) => {
         return (
-          <>
+          <div className="keyphrase-list-item">
             <ListItem key={key}>
-              <ListItemIcon>
-                <ArrowRightOutlinedIcon style={{ color: 'black' }} />
-              </ListItemIcon>
               <ListItemText
                 primary={
-                  <Typography sx={{ display: 'inline', fontFamily: 'Poppins' }} component="span" variant="body2" color="text.primary">
-                    {sentence}
+                  <Typography
+                    sx={{
+                      display: 'inline',
+                      fontFamily: 'Poppins',
+                    }}
+                    component="span"
+                    variant="body2"
+                    color="text.primary"
+                  >
+                    {/* {props.selectedKeywords.filter(i=>sentence.includes(i)).map(i=>(<Chip label={i} variant='outlined' size='small'/>))} */}
                   </Typography>
                 }
+                secondary={sentence}
               />
             </ListItem>
-            <Divider variant="inset" component="li" />
-          </>
+          </div>
         );
       })}
     </List>
