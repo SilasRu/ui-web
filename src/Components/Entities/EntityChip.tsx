@@ -1,10 +1,11 @@
 import { useTheme } from '@mui/material/styles';
-import _ from 'lodash'
+import _ from 'lodash';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { Stack } from '@mui/material';
 
-const colorCodes: Array<'primary' | 'success' | 'secondary' | 'error' | 'warning' | 'default' | 'info'> = ['primary', 'success', 'secondary', 'error', 'warning'];
+const colorCodes: Array<'primary' | 'success' | 'secondary' | 'error' | 'warning' | 'default' | 'info'> = ['info', 'success', 'secondary', 'error', 'primary', 'warning'];
 const colorMap = {
   PER: 0,
   LOC: 1,
@@ -18,14 +19,23 @@ const ListItem = styled('li')(({ theme }) => ({
 
 const EntityChip = (props: { entityGroups: object; selectedEntities: number | null }) => {
   const groups = ['PER', 'LOC', 'ORG', 'MISC', 'Non-speaker PERS'];
-  const entityGroupToDisplay = props.selectedEntities !== null ? props.entityGroups[groups[props.selectedEntities]] : _.uniqBy(Object.values(props.entityGroups).flat(), 'word') ;
+  const entityGroupToDisplay = props.selectedEntities !== null ? props.entityGroups[groups[props.selectedEntities]] : _.uniqBy(Object.values(props.entityGroups).flat(), 'word');
+  const s1 = _.sortBy(entityGroupToDisplay, (o) => o.in_speakers && o.entity_group === 'PER');
+  const sortedChips = _.sortBy(s1, (o) => o.entity_group !== 'PER');
+  const chips = sortedChips.map((data, key) => {
+    return (
+      <ListItem key={key}>
+        <Chip key={key} label={data.word} color={data.entity_group === 'PER' && !data.in_speakers ? 'primary' : colorCodes[colorMap[data.entity_group]]} variant="filled"></Chip>
+      </ListItem>
+    );
+  });
 
   return (
     <div className="entity-chips">
       <Paper
         sx={{
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           flexWrap: 'wrap',
           listStyle: 'none',
           overflow: 'auto',
@@ -36,18 +46,7 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
         }}
         component="ul"
       >
-        {entityGroupToDisplay.map((data, key) => {
-          return (
-            <ListItem key={key}>
-              <Chip
-                key={key}
-                label={data.word}
-                color={data.entity_group === 'PER' && !data.in_speakers ? 'warning' : colorCodes[colorMap[data.entity_group]]}
-                variant="outlined"
-              ></Chip>
-            </ListItem>
-          );
-        })}
+        {chips}
       </Paper>
     </div>
   );

@@ -1,13 +1,11 @@
-import React from 'react';
 import { styled } from '@mui/material/styles';
-import Chip from '@mui/material/Chip';
-import Paper from '@mui/material/Paper';
+import { Chip, Paper } from '@mui/material';
 
 const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-const KeywordsList = (props) => {
+const KeywordsList = (props: { handleKeywordClick: (keyword: any) => void; selectedKeywords: string[]; selectedKeyword: string | null }) => {
   return (
     <Paper
       sx={{
@@ -28,7 +26,7 @@ const KeywordsList = (props) => {
       {props.selectedKeywords.map((data, key) => {
         return (
           <ListItem key={key}>
-            <Chip label={data} variant="outlined" />
+            <Chip label={data} variant={data === props.selectedKeyword ? 'filled' : 'outlined'} onClick={() => props.handleKeywordClick(data)} />
           </ListItem>
         );
       })}

@@ -16,16 +16,29 @@ import { DataApi } from 'src/Services/DataFetching';
 import { ITranscriptData } from 'src/Services/types';
 import Initial from 'src/Components/Initial/Initial';
 
+const baseUrl = process.env.REACT_APP_BASE_URL;
+const sectionLength = 175;
+const config = { transcript: null, baseUrl, sectionLength };
+const dataApi = new DataApi(config);
+
 const Template = () => {
-  const baseUrl = process.env.REACT_APP_BASE_URL;
-  const sectionLength = 175;
-  const config = { transcript: null, baseUrl, sectionLength };
-  const dataApi = new DataApi(config);
   const [transcriptData, setTranscriptData] = React.useState<ITranscriptData | null>(null);
   const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number | null>(null);
+  const [selectedEntities, setSelectedEntities] = React.useState<number | null>(null);
+  const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    dataApi.fetchAll('nexoya daily standup 2022-05-25').then((res) => setTranscriptData(res));
+  }, []);
+
+  const handleTranscriptImport = async (transcriptName: string) => {
+    dataApi.fetchAll(transcriptName).then((res) => setTranscriptData(res));
+    setSelectedEntities(null);
+  };
 
   const handleTimeframeClick = (event) => {
-    setSelectedEntities(null)
+    setSelectedEntities(null);
+    setSelectedKeyword(null);
     if (event === 'PREVIOUS') {
       if (currentTimeFrame === null) {
         setCurrentTimeFrame(() => 0);
@@ -42,13 +55,13 @@ const Template = () => {
       setCurrentTimeFrame(() => null);
     }
   };
-  const [selectedEntities, setSelectedEntities] = React.useState<number>(null);
-  React.useEffect(() => {
-    dataApi.fetchAll('nexoya daily standup 2022-05-25').then((res) => setTranscriptData(res));
-  }, []);
-  const handleTranscriptImport = async (transcriptName: string) => {
-    dataApi.fetchAll(transcriptName).then((res) => setTranscriptData(res));
-    setSelectedEntities(null)
+
+  const handleKeywordClick = (event) => {
+    if (typeof event === 'string') {
+      setSelectedKeyword(event);
+    } else if (event.target.nodeName !== 'SPAN') {
+      setSelectedKeyword(null);
+    }
   };
 
   return (
@@ -60,12 +73,12 @@ const Template = () => {
             <div className="home-top">
               <SummaryCard transcriptData={transcriptData} />
               <Entities transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} setSelectedEntities={setSelectedEntities} selectedEntities={selectedEntities} />
-              <SentimentChart transcriptData={transcriptData} currentTimeFrame={currentTimeFrame}/>
+              <SentimentChart transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} />
             </div>
             <div className="home-bottom">
-              <SpeakerNetwork transcriptData={transcriptData} currentTimeFrame={currentTimeFrame}/>
-              <Keyphrases transcriptData={transcriptData} handleTimeframeClick={handleTimeframeClick} currentTimeFrame={currentTimeFrame} />
-              <Keywords transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} />
+              <SpeakerNetwork transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} />
+              <Keyphrases transcriptData={transcriptData} handleTimeframeClick={handleTimeframeClick} currentTimeFrame={currentTimeFrame} selectedKeyword={selectedKeyword} />
+              <Keywords transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} handleKeywordClick={handleKeywordClick} selectedKeyword={selectedKeyword}/>
             </div>
             <div className="home-list">
               <div className="home-list-title">Latest Transactions</div>

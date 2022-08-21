@@ -14,8 +14,6 @@ const Entities = (props: { transcriptData: ITranscriptData; currentTimeFrame: nu
   }
   if ('PER' in entityGroups) {
     entityGroups['Non-speaker PERS'] = entityGroups['PER'].filter((i) => !i.in_speakers);
-    entityGroups['PER'] = entityGroups['PER'].filter((i) => i.in_speakers);
-    // TODO: Speakers darker color in same tone
   }
 
   return (
@@ -25,13 +23,11 @@ const Entities = (props: { transcriptData: ITranscriptData; currentTimeFrame: nu
         <h1 className="entities-top-desc">Mentioned people, organizations or other entities</h1>
       </div>
       <div className="entities-bottom">
-        <div className="entities-bottom-chart-wrapper">
           <div className="entities-bottom-chart">
             <PolarAreaChart entityGroups={entityGroups} setSelectedEntities={props.setSelectedEntities} />
           </div>
           <EntityChip entityGroups={entityGroups} selectedEntities={props.selectedEntities} />
         </div>
-      </div>
     </div>
   );
 };

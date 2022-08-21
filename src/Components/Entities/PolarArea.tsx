@@ -8,10 +8,10 @@ const PolarAreaChart = (props: { entityGroups: object; setSelectedEntities: (num
     'LOC': 0,
     'ORG': 0,
     'MISC': 0,
-    'Non-speaker PERS': 0,
+    // 'Non-speaker PERS': 0,
   }
   for (const key of Object.keys(props.entityGroups)) {
-    groups[key] = props.entityGroups[key].reduce((acc, obj) => acc + obj.occurrence, 0)
+    if(key in groups) groups[key] = props.entityGroups[key].reduce((acc, obj) => acc + 1, 0)
   }
   const theme = useTheme();
   const state = {
@@ -25,7 +25,7 @@ const PolarAreaChart = (props: { entityGroups: object; setSelectedEntities: (num
         },
       },
       labels: Object.keys(groups),
-      colors: [theme.palette.primary.main, theme.palette.success.main, theme.palette.secondary.main, theme.palette.error.main, theme.palette.warning.main],
+      colors: [theme.palette.primary.main, theme.palette.success.main, theme.palette.secondary.main, theme.palette.error.main, theme.palette.primary.main],
       legend: {
         show: false,
       },
