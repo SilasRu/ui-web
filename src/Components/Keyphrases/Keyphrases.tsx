@@ -47,7 +47,7 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
         </div>
       </div>
       <div className="keyphrases-bottom">
-        <KeyphraseList keyphrasesSelected={keyphrasesSelected}/>
+        <KeyphraseList keyphrasesSelected={keyphrasesSelected} selectedKeyword={props.selectedKeyword}/>
       </div>
     </div>
   );

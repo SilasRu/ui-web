@@ -72,7 +72,7 @@ const Template = () => {
             <Navbar handleTranscriptImport={handleTranscriptImport} />
             <div className="home-top">
               <SummaryCard transcriptData={transcriptData} />
-              <Entities transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} setSelectedEntities={setSelectedEntities} selectedEntities={selectedEntities} />
+              <Entities transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} setSelectedEntities={setSelectedEntities} selectedEntities={selectedEntities} handleKeywordClick={handleKeywordClick}/>
               <SentimentChart transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} />
             </div>
             <div className="home-bottom">
@@ -80,10 +80,10 @@ const Template = () => {
               <Keyphrases transcriptData={transcriptData} handleTimeframeClick={handleTimeframeClick} currentTimeFrame={currentTimeFrame} selectedKeyword={selectedKeyword} />
               <Keywords transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} handleKeywordClick={handleKeywordClick} selectedKeyword={selectedKeyword}/>
             </div>
-            <div className="home-list">
+            {/* <div className="home-list">
               <div className="home-list-title">Latest Transactions</div>
               <Table />
-            </div>
+            </div> */}
           </div>
         </div>
       ) : (

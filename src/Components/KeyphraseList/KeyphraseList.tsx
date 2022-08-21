@@ -2,7 +2,7 @@ import './KeyphraseList.css';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
+import Highlighter from "react-highlight-words";
 
 const KeyphraseList = (props) => {  
   return (
@@ -21,19 +21,18 @@ const KeyphraseList = (props) => {
           <div className="keyphrase-list-item">
             <ListItem key={key}>
               <ListItemText
-                primary={
-                  <Typography
-                    sx={{
-                      display: 'inline',
-                      fontFamily: 'Poppins',
-                    }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                  </Typography>
+                secondary={
+                  <Highlighter
+                  highlightClassName="keyphrase-list-item-highlighter"
+                  searchWords={props.selectedKeyword ? props.selectedKeyword.split(' ') : [] }
+                  autoEscape={true}
+                  highlightStyle={{
+                    backgroundColor: 'white',
+                    fontWeight: 'bold'
+                  }}
+                  textToHighlight={sentence}
+                  />
                 }
-                secondary={sentence}
               />
             </ListItem>
           </div>

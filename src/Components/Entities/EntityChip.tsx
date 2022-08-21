@@ -1,9 +1,7 @@
-import { useTheme } from '@mui/material/styles';
 import _ from 'lodash';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { Stack } from '@mui/material';
 
 const colorCodes: Array<'primary' | 'success' | 'secondary' | 'error' | 'warning' | 'default' | 'info'> = ['info', 'success', 'secondary', 'error', 'primary', 'warning'];
 const colorMap = {
@@ -17,7 +15,7 @@ const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-const EntityChip = (props: { entityGroups: object; selectedEntities: number | null }) => {
+const EntityChip = (props: { entityGroups: object; selectedEntities: number | null; handleKeywordClick: (keyword: any) => void }) => {
   const groups = ['PER', 'LOC', 'ORG', 'MISC', 'Non-speaker PERS'];
   const entityGroupToDisplay = props.selectedEntities !== null ? props.entityGroups[groups[props.selectedEntities]] : _.uniqBy(Object.values(props.entityGroups).flat(), 'word');
   const s1 = _.sortBy(entityGroupToDisplay, (o) => o.in_speakers && o.entity_group === 'PER');
@@ -25,7 +23,13 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
   const chips = sortedChips.map((data, key) => {
     return (
       <ListItem key={key}>
-        <Chip key={key} label={data.word} color={data.entity_group === 'PER' && !data.in_speakers ? 'primary' : colorCodes[colorMap[data.entity_group]]} variant="filled"></Chip>
+        <Chip
+          key={key}
+          label={data.word}
+          color={data.entity_group === 'PER' && !data.in_speakers ? 'primary' : colorCodes[colorMap[data.entity_group]]}
+          variant="outlined"
+          onClick={() => props.handleKeywordClick(data.word)}
+        ></Chip>
       </ListItem>
     );
   });
