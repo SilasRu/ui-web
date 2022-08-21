@@ -1,4 +1,5 @@
 import './Keyphrases.css';
+import React from 'react';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import KeyphraseList from '../KeyphraseList/KeyphraseList';
 import { ITranscriptData } from 'src/Services/types';
@@ -7,16 +8,32 @@ import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
 
 const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeClick: (string) => void; currentTimeFrame: number | null; selectedKeyword: string | null }) => {
-  let keyphrasesSelected =
-    props.currentTimeFrame !== null
-      ? props.transcriptData.keyphrases.dimensions.time[props.currentTimeFrame]
-      : Object.values(props.transcriptData.keyphrases.dimensions.time).flat();
+  let keyphrasesSelected = Object.values(props.transcriptData.keyphrases.dimensions.time).flat();
+  let contextSelected = Object.values(props.transcriptData.keyphrases.dimensions.source_time_section).flat();
 
-      
-  if (props.selectedKeyword !== null) {
-    keyphrasesSelected = keyphrasesSelected.filter(sentence => props.selectedKeyword.split(' ').some(v=>sentence.toLowerCase().includes(v.toLowerCase())))
+  if (props.currentTimeFrame !== null) {
+    keyphrasesSelected = props.transcriptData.keyphrases.dimensions.time[props.currentTimeFrame];
+    for (let i = 0; i < keyphrasesSelected.length; i++) {
+      contextSelected[i] = props.transcriptData.keyphrases.dimensions.source_time_section[props.currentTimeFrame];
+    }
   }
-    
+
+  if (props.selectedKeyword !== null) {
+    const keyphrasesContainingKeyword = keyphrasesSelected.filter((sentence) => props.selectedKeyword.split(' ').some((v) => sentence.toLowerCase().includes(v.toLowerCase())));
+    const contextContainingKeyword = Object.keys(props.transcriptData.keyphrases.dimensions.time)
+      .flatMap((key) => {
+        return props.transcriptData.keyphrases.dimensions.time[key].flatMap((val) => {
+          if (keyphrasesContainingKeyword.includes(val)) {
+            return key;
+          }
+        });
+      })
+      .filter(Boolean);
+
+    keyphrasesSelected = keyphrasesContainingKeyword;
+    contextSelected = contextContainingKeyword.map((i) => contextSelected[i]);
+  }
+  console.log(contextSelected);
 
   return (
     <div className="keyphrases">
@@ -47,7 +64,7 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
         </div>
       </div>
       <div className="keyphrases-bottom">
-        <KeyphraseList keyphrasesSelected={keyphrasesSelected} selectedKeyword={props.selectedKeyword}/>
+        <KeyphraseList transcriptData={props.transcriptData} keyphrasesSelected={keyphrasesSelected} contextSelected={contextSelected} selectedKeyword={props.selectedKeyword} />
       </div>
     </div>
   );

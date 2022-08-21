@@ -18,6 +18,7 @@ export interface DataApiConfig {
 interface IDimensions {
   time: object;
   speaker: object;
+  source_time_section: object;
 }
 
 interface ISentimentsContent {

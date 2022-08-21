@@ -27,7 +27,7 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
           key={key}
           label={data.word}
           color={data.entity_group === 'PER' && !data.in_speakers ? 'primary' : colorCodes[colorMap[data.entity_group]]}
-          variant="outlined"
+          variant="filled"
           onClick={() => props.handleKeywordClick(data.word)}
         ></Chip>
       </ListItem>

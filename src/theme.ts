@@ -59,8 +59,8 @@ declare module '@mui/material/styles' {
 const mainTheme = createTheme({
   palette: {
     info: {
-      // main: color.blue['A200'],
-      main: color.blue[100],
+      main: color.blue['A200'],
+      // main: color.blue[100],
     },
     success: {
       main: color.green[600],
