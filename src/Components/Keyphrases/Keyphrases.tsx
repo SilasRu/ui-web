@@ -33,7 +33,6 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
     keyphrasesSelected = keyphrasesContainingKeyword;
     contextSelected = contextContainingKeyword.map((i) => contextSelected[i]);
   }
-  console.log(contextSelected);
 
   return (
     <div className="keyphrases">
