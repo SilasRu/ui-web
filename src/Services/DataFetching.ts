@@ -1,9 +1,4 @@
-import sentiments from '../Assets/Data/sentiment-demo.json';
 import { DataApiConfig, ITranscript, ISentiments, IKeyphrases, IKeywords, IEntities } from './types';
-
-const getSentiments = () => {
-  return sentiments;
-};
 
 export class DataApi implements DataApiConfig {
   public transcript: ITranscript | null;
