@@ -28,7 +28,7 @@ const Template = () => {
   const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    dataApi.fetchAll('nexoya daily standup 2022-05-25').then((res) => setTranscriptData(res));
+    dataApi.fetchAll('nexoya daily standup 2022-05-24').then((res) => setTranscriptData(res));
   }, []);
 
   const handleTranscriptImport = async (transcriptName: string) => {

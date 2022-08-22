@@ -26,7 +26,10 @@ const KeywordsList = (props: { handleKeywordClick: (keyword: any) => void; selec
       {props.selectedKeywords.map((data, key) => {
         return (
           <ListItem key={key}>
-            <Chip label={data} variant={data === props.selectedKeyword ? 'filled' : 'outlined'} onClick={() => props.handleKeywordClick(data)} />
+            <Chip label={data} variant={data === props.selectedKeyword ? 'filled' : 'outlined'} onClick={() => props.handleKeywordClick(data)} sx={{
+              fontSize: data.split(' ').length > 4 ? '0.7rem' : '0.8125rem',
+              maxWidth: '20vw'
+            }}/>
           </ListItem>
         );
       })}

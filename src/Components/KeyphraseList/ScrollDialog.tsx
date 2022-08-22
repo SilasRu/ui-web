@@ -1,13 +1,8 @@
 import React from 'react';
-import Dialog, { DialogProps } from '@mui/material/Dialog';
+import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
-import Divider from '@mui/material/Divider';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import List from '@mui/material/List';
@@ -22,9 +17,9 @@ const ScrollDialog = (props) => {
       </DialogTitle>
       <DialogContent dividers={true}>
         <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          {props.contextTurns.map((i) => {
+          {props.contextTurns.map((i, key) => {
             return (
-              <ListItem alignItems="flex-start">
+              <ListItem alignItems="flex-start" key={key}>
                 <ListItemText
                   primary={
                     <React.Fragment>
