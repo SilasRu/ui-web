@@ -19,7 +19,7 @@ const Entities = (props: {
     entityGroups = _.groupBy(props.transcriptData.entities.entities, 'entity_group');
   }
   if ('PER' in entityGroups) {
-    entityGroups['Non-speaker PERS'] = entityGroups['PER'].filter((i) => !i.in_speakers);
+    entityGroups['Non-speaker PER'] = entityGroups['PER'].filter((i) => !i.in_speakers);
   }
 
   return (

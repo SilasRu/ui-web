@@ -4,6 +4,13 @@ import * as color from '@mui/material/colors';
 declare module '@mui/material/styles' {
   interface Theme {
     charts: {
+      blueMono: {
+        one: React.CSSProperties['color'];
+        two: React.CSSProperties['color'];
+        three: React.CSSProperties['color'];
+        four: React.CSSProperties['color'];
+        five: React.CSSProperties['color'];
+      }
       red: React.CSSProperties['color'];
       pink: React.CSSProperties['color'];
       purple: React.CSSProperties['color'];
@@ -27,6 +34,13 @@ declare module '@mui/material/styles' {
   }
   interface ThemeOptions {
     charts: {
+      blueMono: {
+        one: React.CSSProperties['color'];
+        two: React.CSSProperties['color'];
+        three: React.CSSProperties['color'];
+        four: React.CSSProperties['color'];
+        five: React.CSSProperties['color'];
+      }
       red: React.CSSProperties['color'];
       pink: React.CSSProperties['color'];
       purple: React.CSSProperties['color'];
@@ -70,6 +84,13 @@ const mainTheme = createTheme({
     },
   },
   charts: {
+    blueMono: {
+      one: '#1a237e',
+      two: '#3f51b5',
+      three: '#7986cb',
+      four: '#c5cae9',
+      five: '#e8eaf6'
+    },
     red: color.red['A400'],
     pink: color.pink[500],
     purple: color.purple[500],

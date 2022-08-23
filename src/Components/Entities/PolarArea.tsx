@@ -25,7 +25,8 @@ const PolarAreaChart = (props: { entityGroups: object; setSelectedEntities: (num
         },
       },
       labels: Object.keys(groups),
-      colors: [theme.palette.primary.main, theme.palette.success.main, theme.palette.secondary.main, theme.palette.error.main, theme.palette.primary.main],
+      // colors: [theme.palette.primary.main, theme.palette.success.main, theme.palette.secondary.main, theme.palette.error.main, theme.palette.primary.main],
+      colors: [theme.charts.blueMono.one, theme.charts.blueMono.two, theme.charts.blueMono.three, theme.charts.blueMono.four, theme.charts.blueMono.five],
       legend: {
         show: false,
       },
@@ -33,7 +34,7 @@ const PolarAreaChart = (props: { entityGroups: object; setSelectedEntities: (num
         colors: ['#fff'],
       },
       fill: {
-        opacity: 0.8,
+        opacity: 0.95,
       },
       yaxis: {
         labels: {

@@ -16190,22 +16190,7 @@
                                 "content": [
                                     {
                                         "type": "text",
-                                        "text": "A"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "phrase",
-                                "attrs": {
-                                    "startTime": 421.9,
-                                    "endTime": 422.33740624999996,
-                                    "type": "WORD",
-                                    "confidence": 1
-                                },
-                                "content": [
-                                    {
-                                        "type": "text",
-                                        "text": "len "
+                                        "text": "Alen"
                                     }
                                 ]
                             },
