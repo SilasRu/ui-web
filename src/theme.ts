@@ -11,6 +11,14 @@ declare module '@mui/material/styles' {
         four: React.CSSProperties['color'];
         five: React.CSSProperties['color'];
       }
+      sentiment: {
+        one: React.CSSProperties['color'];
+        two: React.CSSProperties['color'];
+        three: React.CSSProperties['color'];
+        four: React.CSSProperties['color'];
+        five: React.CSSProperties['color'];
+        six: React.CSSProperties['color'];
+      }
       red: React.CSSProperties['color'];
       pink: React.CSSProperties['color'];
       purple: React.CSSProperties['color'];
@@ -41,7 +49,15 @@ declare module '@mui/material/styles' {
         four: React.CSSProperties['color'];
         five: React.CSSProperties['color'];
       }
-      red: React.CSSProperties['color'];
+      sentiment: {
+        one: React.CSSProperties['color'];
+        two: React.CSSProperties['color'];
+        three: React.CSSProperties['color'];
+        four: React.CSSProperties['color'];
+        five: React.CSSProperties['color'];
+        six: React.CSSProperties['color'];
+      }
+    red: React.CSSProperties['color'];
       pink: React.CSSProperties['color'];
       purple: React.CSSProperties['color'];
       deepPurple: React.CSSProperties['color'];
@@ -90,6 +106,14 @@ const mainTheme = createTheme({
       three: '#7986cb',
       four: '#c5cae9',
       five: '#e8eaf6'
+    },
+    sentiment: {
+      one: '#00BCC1',
+      two: '#51DCBC',
+      three: '#D43C6E',
+      four: '#8F217F',
+      five: '#605788',
+      six: '#AF2C2F'
     },
     red: color.red['A400'],
     pink: color.pink[500],

@@ -38,7 +38,7 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
           style={{
             backgroundColor: backgroundColorMap[data.entity_group],
             color: fontColorMap[data.entity_group],
-            border: data.entity_group === 'PER' && !data.in_speakers ? '1px dashed white'  : null
+            border: data.entity_group === 'PER' && !data.in_speakers ? '3px double white'  : null
           }}
           variant='filled'
           onClick={() => props.handleKeywordClick(data.word)}

@@ -68,7 +68,7 @@ const SentimentChart = (props) => {
       annotations: {
         xaxis: [timeframeAnnontations]
       },
-      colors: [theme.palette.success.main, theme.palette.error.main],
+      colors: [theme.charts.sentiment.one, theme.charts.sentiment.four],
       grid: {
         show: false,
       },
@@ -89,8 +89,8 @@ const SentimentChart = (props) => {
       // fill: {
       //   type: 'gradient',
       //   gradient: {
-      //     opacityFrom: 0.2,
-      //     opacityTo: 0.4,
+      //     opacityFrom: 0.6,
+      //     opacityTo: 0.8,
       //   },
       // },
       xaxis: {
