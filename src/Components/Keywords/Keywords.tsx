@@ -10,7 +10,7 @@ const Keywords = (props: { transcriptData: ITranscriptData; currentTimeFrame: nu
   return (
     <div className="keywords" onClick={props.handleKeywordClick}>
       <div className="keywords-title">Keywords</div>
-      <div className="keywords-desc">Lorem Ipsum</div>
+      <div className="keywords-desc">The main topics in shortform</div>
       <div className="keywords-content">
         <div className="keyword-chips">
           <KeywordsList selectedKeywords={selectedKeywords} handleKeywordClick={props.handleKeywordClick} selectedKeyword={props.selectedKeyword}/>

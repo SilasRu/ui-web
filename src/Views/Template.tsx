@@ -26,7 +26,7 @@ const Template = () => {
   const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number | null>(null);
   const [selectedEntities, setSelectedEntities] = React.useState<number | null>(null);
   const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(null);
-
+  console.log(transcriptData)
   React.useEffect(() => {
     dataApi.fetchAll('nexoya daily standup 2022-05-24').then((res) => setTranscriptData(res));
   }, []);
