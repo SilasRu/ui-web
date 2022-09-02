@@ -7,21 +7,12 @@ import { ITranscriptData } from 'src/Services/types';
 import { toNetworkGraph } from 'src/Services/dataProcessing';
 
 const SpeakerNetwork = (props: { transcriptData: ITranscriptData; currentTimeFrame: number | null }) => {
-  
-  let lastStartIndex = 0;
-  const turnsPerFrame = {};
-  Object.keys(props.transcriptData.keyphrases.dimensions.source_time_section).forEach((key) => {
-    const currLength = props.transcriptData.keyphrases.dimensions.source_time_section[key].split(':').length - 1;
-    turnsPerFrame[key] = [lastStartIndex, currLength];
-    lastStartIndex = lastStartIndex + currLength;
-  });
-
 
   let speakerSubset = null
   if (props.currentTimeFrame !== null) {
-    const turns = turnsPerFrame[props.currentTimeFrame];
-    const filteredTimeframe = props.transcriptData.transcript.transcript.content[0].content.slice(turns[0], (turns[0] + turns[1]));
-    speakerSubset = filteredTimeframe.map((i) => i?.attrs?.speakerId);
+    const occuringSpeakers = props.transcriptData.keyphrases.dimensions.source_time_section[props.currentTimeFrame].match(/.\w+:/g)
+    const uniqSpeakers = _.uniq(occuringSpeakers.map(i=>i.split(':')[0].trim()))
+    speakerSubset = props.transcriptData.transcript.speaker_info.filter(i=>uniqSpeakers.includes(i.name)).map(i=>i.id)
   }
   const speakerGraphData = toNetworkGraph(props.transcriptData.transcript, speakerSubset)
 

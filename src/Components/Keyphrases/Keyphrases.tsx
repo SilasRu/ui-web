@@ -16,14 +16,6 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
     for (let i = 0; i < keyphrasesSelected.length; i++) {
       contextSelected[i] = props.transcriptData.keyphrases.dimensions.source_time_section[props.currentTimeFrame];
     }
-  } else {
-    let index = 0;
-    Object.values(props.transcriptData.keyphrases.dimensions.time).forEach((segmentValues, segmentIndex) => {
-      for (let i = 0; i < segmentValues.length; i++) {
-        contextSelected[index] = props.transcriptData.keyphrases.dimensions.source_time_section[segmentIndex];
-        index++;
-      }
-    });
   }
 
   if (props.selectedKeyword !== null) {

@@ -1,6 +1,6 @@
 export interface ITranscript {
   name: string;
-  speaker_info: object[];
+  speaker_info: [{id: number, name: string}];
   start_times: number[];
   end_times: number[];
   date: string;
