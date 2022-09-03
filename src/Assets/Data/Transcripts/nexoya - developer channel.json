@@ -7,15 +7,15 @@
     "speaker_info": [
         {
             "id": 0,
-            "name": "Philipp Meier"
+            "name": "Philipp"
         },
         {
             "id": 1,
-            "name": "Dragos Sebestin"
+            "name": "Dragos"
         },
         {
             "id": 2,
-            "name": "Ivan Pejic"
+            "name": "Ivan"
         },
         {
             "id": 3,
@@ -23,11 +23,11 @@
         },
         {
             "id": 4,
-            "name": "Marco.Hochstrasser"
+            "name": "Marco"
         },
         {
             "id": 5,
-            "name": "Silas Rudolf"
+            "name": "Silas"
         }
     ],
     "transcript": {
@@ -221,7 +221,7 @@
                                 "content": [
                                     {
                                         "type": "text",
-                                        "text": "us?\n"
+                                        "text": "us?"
                                     }
                                 ]
                             },

@@ -15,6 +15,7 @@ import { DataApi } from 'src/Services/DataFetching';
 import { ITranscriptData } from 'src/Services/types';
 import Initial from 'src/Components/Initial/Initial';
 import { toHeatnessSeries, toSentimentSeries } from 'src/Services/dataProcessing';
+import FilterCard from 'src/Components/FilterCard/FilterCard';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const sectionLength = 175;
@@ -83,7 +84,7 @@ const Template = () => {
           <div className="home-container">
             <Navbar handleTranscriptImport={handleTranscriptImport} />
             <div className="home-top">
-              <SummaryCard transcriptData={transcriptData} />
+              {selectedKeyword || currentTimeFrame !== null? <FilterCard selectedKeyword={selectedKeyword} currentTimeFrame={currentTimeFrame}/> : <SummaryCard transcriptData={transcriptData} />}
               <Entities
                 transcriptData={transcriptData}
                 currentTimeFrame={currentTimeFrame}

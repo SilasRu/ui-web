@@ -11,6 +11,16 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
   let keyphrasesSelected = Object.values(props.transcriptData.keyphrases.dimensions.time).flat();
   let contextSelected = Object.values(props.transcriptData.keyphrases.dimensions.source_time_section).flat();
 
+  if (props.currentTimeFrame === null && props.selectedKeyword === null) {
+    let index = 0;
+    Object.values(props.transcriptData.keyphrases.dimensions.time).forEach((segmentValues, segmentIndex) => {
+      for (let i = 0; i < segmentValues.length; i++) {
+        contextSelected[index] = props.transcriptData.keyphrases.dimensions.source_time_section[segmentIndex];
+        index++;
+      }
+    });
+  }
+
   if (props.currentTimeFrame !== null) {
     keyphrasesSelected = props.transcriptData.keyphrases.dimensions.time[props.currentTimeFrame];
     for (let i = 0; i < keyphrasesSelected.length; i++) {
