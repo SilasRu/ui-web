@@ -3,7 +3,6 @@ import mainTheme from '../theme';
 import React from 'react';
 
 import SentimentChart from 'src/Components/SentimentChart/SentimentChart';
-import Table from 'src/Components/Table/Table';
 import SpeakerNetwork from 'src/Components/SpeakerNetwork/SpeakerNetwork';
 import Keyphrases from 'src/Components/Keyphrases/Keyphrases';
 import Navbar from 'src/Components/Navbar/Navbar';
@@ -15,6 +14,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { DataApi } from 'src/Services/DataFetching';
 import { ITranscriptData } from 'src/Services/types';
 import Initial from 'src/Components/Initial/Initial';
+import { toHeatnessSeries, toSentimentSeries } from 'src/Services/dataProcessing';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const sectionLength = 175;
@@ -26,13 +26,25 @@ const Template = () => {
   const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number | null>(null);
   const [selectedEntities, setSelectedEntities] = React.useState<number | null>(null);
   const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(null);
-  console.log(transcriptData)
+  const [transcriptName, setTranscriptName] = React.useState('nexoya daily standup 2022-05-24');
+  const [sentimentSeries, setSentimentSeries] = React.useState({});
+  const [heatnessSeries, setHeatnessSeries] = React.useState({});
+
   React.useEffect(() => {
-    dataApi.fetchAll('nexoya daily standup 2022-05-24').then((res) => setTranscriptData(res));
-  }, []);
+    dataApi.fetchAll(transcriptName).then((res) => {
+      setTranscriptData(res);
+    });
+  }, [transcriptName]);
+
+  React.useEffect(() => {
+    if (transcriptData) {
+      setSentimentSeries(toSentimentSeries(transcriptData));
+      setHeatnessSeries(toHeatnessSeries(transcriptData));
+    }
+  }, [transcriptData]);
 
   const handleTranscriptImport = async (transcriptName: string) => {
-    dataApi.fetchAll(transcriptName).then((res) => setTranscriptData(res));
+    setTranscriptName(transcriptName);
     setSelectedEntities(null);
   };
 
@@ -72,13 +84,19 @@ const Template = () => {
             <Navbar handleTranscriptImport={handleTranscriptImport} />
             <div className="home-top">
               <SummaryCard transcriptData={transcriptData} />
-              <Entities transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} setSelectedEntities={setSelectedEntities} selectedEntities={selectedEntities} handleKeywordClick={handleKeywordClick}/>
-              <SentimentChart transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} />
+              <Entities
+                transcriptData={transcriptData}
+                currentTimeFrame={currentTimeFrame}
+                setSelectedEntities={setSelectedEntities}
+                selectedEntities={selectedEntities}
+                handleKeywordClick={handleKeywordClick}
+              />
+              <SentimentChart transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} sentimentSeries={sentimentSeries} heatnessSeries={heatnessSeries} />
             </div>
             <div className="home-bottom">
               <SpeakerNetwork transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} />
               <Keyphrases transcriptData={transcriptData} handleTimeframeClick={handleTimeframeClick} currentTimeFrame={currentTimeFrame} selectedKeyword={selectedKeyword} />
-              <Keywords transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} handleKeywordClick={handleKeywordClick} selectedKeyword={selectedKeyword}/>
+              <Keywords transcriptData={transcriptData} currentTimeFrame={currentTimeFrame} handleKeywordClick={handleKeywordClick} selectedKeyword={selectedKeyword} />
             </div>
             {/* <div className="home-list">
               <div className="home-list-title">Latest Transactions</div>

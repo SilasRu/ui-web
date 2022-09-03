@@ -31,4 +31,30 @@ const toNetworkGraph = (transcript, speakerSubset) => {
   return { nodes, edges };
 };
 
-export { toNetworkGraph };
+const toSentimentSeries = (transcriptData) => {
+  const sentiments = transcriptData.sentiments.dimensions.time;
+  const lineChartData = {
+    data: Object.values(sentiments),
+    chartId: 'sent-series',
+    name: 'Sentiment',
+    interval: Object.keys(sentiments).map((i) => parseInt(i)),
+  };
+  return lineChartData;
+};
+
+const toHeatnessSeries = (transcriptData) => {
+  const sentiments = transcriptData.sentiments.dimensions.time;
+  const speakerChanges = Object.keys(transcriptData.keyphrases.dimensions.source_time_section).flatMap((key) => {
+    const occuringSpeakers = transcriptData.keyphrases.dimensions.source_time_section[key].match(/.\w+:/g);
+    return occuringSpeakers.map((i) => i.split(':')[0].trim()).length;
+  });
+  const lineChartData = {
+    data: speakerChanges,
+    chartId: 'heat-series',
+    name: 'Speaker changes',
+    interval: Object.keys(sentiments).map((i) => parseInt(i)),
+  };
+  return lineChartData;
+};
+
+export { toNetworkGraph, toSentimentSeries, toHeatnessSeries };

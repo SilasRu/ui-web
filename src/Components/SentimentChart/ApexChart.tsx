@@ -4,111 +4,125 @@ import React from 'react';
 import { ApexOptions } from 'apexcharts';
 import ReactApexChart from 'react-apexcharts';
 
-
-
-
 const SentimentChart = (props) => {
-  const theme = useTheme()
-  const startTimestamp = new Date(props.transcriptData.transcript.date);
-  const durationInSec = props.transcriptData.transcript.meeting_length;
-  const endTimestamp = dateFns.addSeconds(startTimestamp, durationInSec);  
-  const xInterval = dateFns.eachMinuteOfInterval({ start: startTimestamp, end: endTimestamp });
+  const theme = useTheme();
+  const sentiments = props.transcriptData.sentiments.dimensions.time;
 
-  const allSentiments = props.transcriptData.sentiments.sentiments;
-  const series = {
-    sentiment: [],
-    heatness: [],
-    interval: xInterval.map((i) => i.toISOString()),
+  console.log(props);
+
+  const speakerChanges = Object.keys(props.transcriptData.keyphrases.dimensions.source_time_section).flatMap((key) => {
+    const occuringSpeakers = props.transcriptData.keyphrases.dimensions.source_time_section[key].match(/.\w+:/g);
+    return occuringSpeakers.map((i) => i.split(':')[0].trim()).length;
+  });
+
+  const series: { sentimentSeries: number[]; heatnessSeries: number[]; interval: number[] } = {
+    sentimentSeries: Object.values(sentiments),
+    heatnessSeries: speakerChanges,
+    interval: Object.keys(sentiments).map((i) => parseInt(i)),
   };
+  console.log(series);
 
-  const speakerChangeTimes = props.transcriptData.transcript.transcript.content[0].content.map(i=>i.content.slice(-1)[0].attrs.endTime)
-
-  for (let i = 0; i < xInterval.length; i ++) {
-    const sentimentChunk = allSentiments.filter(f=>f.timestamp > i*60 && f.timestamp < (i+1)*60);
-    const positive = sentimentChunk.filter((j) => j.label === 'POSITIVE');
-    const negative = sentimentChunk.filter((j) => j.label === 'NEGATIVE');
-    series.sentiment.push(positive.length - negative.length);
-
-    const heatnessChunk = speakerChangeTimes.filter(f=>f > i*60 && f < (i+1)*60);
-    series.heatness.push(heatnessChunk.length);
-  }
-
-  let timeframeAnnontations
-  if(props.currentTimeFrame !== null) {
-    timeframeAnnontations =         {
-      x: new Date(series.interval[props.currentTimeFrame]).getTime(),
-      x2: new Date(series.interval[props.currentTimeFrame + 1]).getTime(),
+  let timeframeAnnontations;
+  if (props.currentTimeFrame !== null) {
+    timeframeAnnontations = {
+      x: series.interval[props.currentTimeFrame],
+      x2: series.interval[props.currentTimeFrame + 1],
       fillColor: theme.charts.cyan,
       label: {
         text: 'Timeframe',
         orientation: 'horizontal',
         textAnchor: 'start',
         borderWidth: 0,
-        offsetY: - 15,
-        offsetX: - 4,
+        offsetY: -15,
+        offsetX: -4,
         style: {
-          fontFamily: 'Poppins'
-        }
-      }
-    }
+          fontFamily: 'Poppins',
+        },
+      },
+    };
   }
 
   const chartData: ApexOptions = {
     series: [
       {
         name: 'Sentiment',
-        data: series.sentiment
+        data: series.sentimentSeries,
       },
       {
-        name: 'Heatness',
-        data: series.heatness
+        name: 'Speaker changes',
+        data: series.heatnessSeries,
       },
     ],
-    
-      annotations: {
-        xaxis: [timeframeAnnontations]
-      },
-      colors: [theme.charts.sentiment.one, theme.charts.sentiment.four],
-      grid: {
+
+    annotations: {
+      xaxis: [timeframeAnnontations],
+    },
+    colors: [theme.charts.sentiment.one, theme.charts.sentiment.four],
+    grid: {
+      show: false,
+    },
+    chart: {
+      id: 'sentiment',
+      group: 'social',
+
+      type: 'area',
+      stacked: false,
+      toolbar: {
         show: false,
       },
-      chart: {
-        type: 'area',
-        stacked: false,
-        toolbar: {
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: 'smooth',
+      width: 2,
+    },
+    yaxis: [
+      {
+        title: {
+          text: '',
+        },
+        labels: {
           show: false,
         },
       },
-      dataLabels: {
+      {
+        opposite: true,
+        title: {
+          text: '',
+        },
+        labels: {
+          show: false,
+        },
+      },
+    ],
+    xaxis: {
+      type: 'numeric',
+      categories: series.interval,
+      tooltip: {
         enabled: false,
       },
-      stroke: {
-        curve: 'smooth',
-        width: 2,
-      },
-      // fill: {
-      //   type: 'gradient',
-      //   gradient: {
-      //     opacityFrom: 0.6,
-      //     opacityTo: 0.8,
-      //   },
-      // },
-      xaxis: {
-        type: 'datetime',
-        categories: series.interval,
-        tooltip: {
-          enabled: false,
+      labels: {
+        formatter: function (val) {
+          return parseInt(val).toFixed(0);
         },
       },
-      tooltip: {
-        enabled: true,
-        x: {
-          show: true,
-          format: 'HH:mm:ss',
-        },
+    },
+    tooltip: {
+      enabled: true,
+      x: {
+        show: true,
+        format: 'HH:mm:ss',
       },
+    },
   };
-  return <div>{chartData ? <ReactApexChart options={chartData} series={chartData.series} type="area" width="100%" height="120%" /> : <></>}</div>;
+
+  return (
+    <div>
+      <ReactApexChart options={chartData} series={chartData.series} type="area" width="100%" height="120%" />
+    </div>
+  );
 };
 
 export default SentimentChart;
