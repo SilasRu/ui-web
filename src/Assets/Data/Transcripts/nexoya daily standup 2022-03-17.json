@@ -584,7 +584,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "Nothing "
+                    "text": "Not "
                   }
                 ]
               },
@@ -674,7 +674,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "implementation "
+                    "text": "implementing "
                   }
                 ]
               },
@@ -689,7 +689,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "on "
+                    "text": "the "
                   }
                 ]
               },
@@ -771,6 +771,21 @@
               {
                 "type": "phrase",
                 "attrs": {
+                  "startTime": 23.8,
+                  "endTime": 24.1,
+                  "type": "WORD",
+                  "confidence": 0.4131782
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "a"
+                  }
+                ]
+              },
+              {
+                "type": "phrase",
+                "attrs": {
                   "startTime": 24.1,
                   "endTime": 24.4,
                   "type": "WORD",
@@ -824,7 +839,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "Philip "
+                    "text": "Philipp "
                   }
                 ]
               },
@@ -877,21 +892,6 @@
                 "type": "phrase",
                 "attrs": {
                   "startTime": 26.1,
-                  "endTime": 26.7,
-                  "type": "WORD",
-                  "confidence": 1
-                },
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "t"
-                  }
-                ]
-              },
-              {
-                "type": "phrase",
-                "attrs": {
-                  "startTime": 26.7,
                   "endTime": 27,
                   "type": "WORD",
                   "confidence": 1
@@ -899,7 +899,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "here. "
+                    "text": "there. "
                   }
                 ]
               },
@@ -1214,7 +1214,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "catch "
+                    "text": "catched "
                   }
                 ]
               },
@@ -1244,7 +1244,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "the "
+                    "text": "with "
                   }
                 ]
               },
@@ -1252,6 +1252,21 @@
                 "type": "phrase",
                 "attrs": {
                   "startTime": 33.7,
+                  "endTime": 33.8,
+                  "type": "WORD",
+                  "confidence": 0.9128386
+                },
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "the "
+                  }
+                ]
+              },
+              {
+                "type": "phrase",
+                "attrs": {
+                  "startTime": 33.8,
                   "endTime": 34.2,
                   "type": "WORD",
                   "confidence": 0.9128386
@@ -1911,36 +1926,6 @@
               {
                 "type": "phrase",
                 "attrs": {
-                  "startTime": 47.8,
-                  "endTime": 47.92840625,
-                  "type": "WORD",
-                  "confidence": 0.7901579
-                },
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "ship "
-                  }
-                ]
-              },
-              {
-                "type": "phrase",
-                "attrs": {
-                  "startTime": 47.92840625,
-                  "endTime": 48.5,
-                  "type": "NO SPEECH",
-                  "confidence": 1
-                },
-                "content": [
-                  {
-                    "type": "text",
-                    "text": " "
-                  }
-                ]
-              },
-              {
-                "type": "phrase",
-                "attrs": {
                   "startTime": 48.5,
                   "endTime": 48.9,
                   "type": "WORD",
@@ -1986,21 +1971,6 @@
               {
                 "type": "phrase",
                 "attrs": {
-                  "startTime": 49.5,
-                  "endTime": 49.8,
-                  "type": "WORD",
-                  "confidence": 0.6960576
-                },
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "probably "
-                  }
-                ]
-              },
-              {
-                "type": "phrase",
-                "attrs": {
                   "startTime": 49.8,
                   "endTime": 50,
                   "type": "WORD",
@@ -2009,7 +1979,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "do "
+                    "text": "do, "
                   }
                 ]
               },
@@ -2365,7 +2335,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "mentioned "
+                    "text": "mentioned, "
                   }
                 ]
               },
@@ -2380,7 +2350,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": "you "
+                    "text": "can "
                   }
                 ]
               },
@@ -2395,7 +2365,7 @@
                 "content": [
                   {
                     "type": "text",
-                    "text": " "
+                    "text": "you "
                   }
                 ]
               },

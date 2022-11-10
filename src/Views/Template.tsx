@@ -30,7 +30,7 @@ const Template = () => {
   const [transcriptName, setTranscriptName] = React.useState('nexoya daily standup 2022-05-24');
   const [sentimentSeries, setSentimentSeries] = React.useState({});
   const [heatnessSeries, setHeatnessSeries] = React.useState({});
-
+  console.log(transcriptData)
   React.useEffect(() => {
     dataApi.fetchAll(transcriptName).then((res) => {
       setTranscriptData(res);

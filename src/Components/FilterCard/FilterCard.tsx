@@ -11,21 +11,21 @@ const FilterCard = (props) => {
         <div className="filter-card-top-desc">Currently active filter selection:</div>
       </div>
       <div className="filter-card-bottom">
-        {props.selectedKeyword ? (
+      {props.currentTimeFrame !== null ? (
           <div className="filter-card-bottom-item">
             <div className="filter-card-bottom-left">
-              <span className="filter-card-bottom-left-number">Keyword</span>
-              <Chip label={props.selectedKeyword} />
+              <span className="filter-card-bottom-left-number">Time frame</span>
+              <span className="filter-card-bottom-left-desc">{props.currentTimeFrame}</span>
             </div>
           </div>
         ) : (
           <></>
         )}
-        {props.currentTimeFrame !== null ? (
+        {props.selectedKeyword ? (
           <div className="filter-card-bottom-item">
             <div className="filter-card-bottom-left">
-              <span className="filter-card-bottom-left-number">Time frame</span>
-              <span className="filter-card-bottom-left-desc">{props.currentTimeFrame}</span>
+              <span className="filter-card-bottom-left-number">Keyword</span>
+              <Chip label={props.selectedKeyword} />
             </div>
           </div>
         ) : (

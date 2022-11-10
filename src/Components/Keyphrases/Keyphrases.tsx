@@ -60,7 +60,7 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
       />
       <div className="keyphrases-top">
         <div className="keyphrases-top-text">
-          <h1 className="keyphrases-top-title">Keyphrases</h1>
+          <h1 className="keyphrases-top-title">Summary sentences</h1>
           <h1 className="keyphrases-top-desc">Short summary sentences describing the discussion</h1>
         </div>
         <div className="keyphrases-top-buttons">
