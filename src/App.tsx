@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Template from './Views/Template';
+import Test from './Views/Test'
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <div className="app" id="app">
           <Routes>
             <Route path="/template" element={<Template />}></Route>
+            <Route path="/" element={<Test />}></Route>
           </Routes>
       </div>
     </Router>

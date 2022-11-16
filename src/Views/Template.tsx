@@ -14,7 +14,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { DataApi } from 'src/Services/DataFetching';
 import { ITranscriptData } from 'src/Services/types';
 import Initial from 'src/Components/Initial/Initial';
-import { toHeatnessSeries, toSentimentSeries } from 'src/Services/dataProcessing';
+import { toHeatnessSeries, toSentimentSeries } from 'src/Services/DataProcessing';
 import FilterCard from 'src/Components/FilterCard/FilterCard';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;

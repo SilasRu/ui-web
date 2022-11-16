@@ -2,14 +2,6 @@
 
 This is a React project boostrapped with bun.
 
-## Getting Started
-
-### Cloning the repo
-
-```sh
-bun create react ./app
-```
-
 ### Development
 
 First, run the development server.

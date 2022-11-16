@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+
+  server:
+    build: 
+      dockerfile: Dockerfile
+      args:
+        port: 3000
+    ports:
+      - 3000:3000
+    logging:
+      options:
+        max-size: 10m
+
+

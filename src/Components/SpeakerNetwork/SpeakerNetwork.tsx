@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import opts from '../../settings.json';
 import Graph from 'react-graph-vis';
 import { ITranscriptData } from 'src/Services/types';
-import { toNetworkGraph } from 'src/Services/dataProcessing';
+import { toNetworkGraph } from 'src/Services/DataProcessing';
 
 const SpeakerNetwork = (props: { transcriptData: ITranscriptData; currentTimeFrame: number | null }) => {
 
