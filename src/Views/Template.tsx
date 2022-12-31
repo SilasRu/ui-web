@@ -18,7 +18,7 @@ import { toHeatnessSeries, toSentimentSeries } from 'src/Services/DataProcessing
 import FilterCard from 'src/Components/FilterCard/FilterCard';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
-const sectionLength = 175;
+const sectionLength = 200;
 const config = { transcript: null, baseUrl, sectionLength };
 const dataApi = new DataApi(config);
 
@@ -27,7 +27,7 @@ const Template = () => {
   const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number | null>(null);
   const [selectedEntities, setSelectedEntities] = React.useState<number | null>(null);
   const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(null);
-  const [transcriptName, setTranscriptName] = React.useState('nexoya daily standup 2022-05-24');
+  const [transcriptName, setTranscriptName] = React.useState('ES2002b');
   const [sentimentSeries, setSentimentSeries] = React.useState({});
   const [heatnessSeries, setHeatnessSeries] = React.useState({});
   console.log(transcriptData)
@@ -77,6 +77,14 @@ const Template = () => {
     }
   };
 
+  const handleFilterReset = (event) => {
+    if (event === null) {
+      setSelectedEntities(null);
+      setSelectedKeyword(null);
+      setCurrentTimeFrame(() => null);
+    }
+  }
+
   return (
     <ThemeProvider theme={mainTheme}>
       {transcriptData ? (
@@ -84,7 +92,7 @@ const Template = () => {
           <div className="home-container">
             <Navbar handleTranscriptImport={handleTranscriptImport} />
             <div className="home-top">
-              {selectedKeyword || currentTimeFrame !== null? <FilterCard selectedKeyword={selectedKeyword} currentTimeFrame={currentTimeFrame}/> : <SummaryCard transcriptData={transcriptData} />}
+              {selectedKeyword || currentTimeFrame !== null? <FilterCard selectedKeyword={selectedKeyword} currentTimeFrame={currentTimeFrame} handleFilterReset={handleFilterReset}/> : <SummaryCard transcriptData={transcriptData} />}
               <Entities
                 transcriptData={transcriptData}
                 currentTimeFrame={currentTimeFrame}
