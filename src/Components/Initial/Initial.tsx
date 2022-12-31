@@ -1,6 +1,10 @@
+import CircularProgress from '@mui/material/CircularProgress';
+
 const Initial = () => {
     return (
-        <h1>NOTHING HERE</h1>
+        <div>
+        {/* <p>Loading...</p> <CircularProgress /> */}
+        </div>
     )
 }
 
