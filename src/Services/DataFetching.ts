@@ -69,5 +69,3 @@ export class DataApi implements DataApiConfig {
   }
 
 }
-
-export { getSentiments };
