@@ -8,10 +8,10 @@ const Navbar = (props) => {
     <div className="navbar">
       <div className="navbar-wrapper">
         <div className="navbar-selector">
-          <TranscriptDropdown handleTranscriptImport={props.handleTranscriptImport} />
+          {/* <TranscriptDropdown handleTranscriptImport={props.handleTranscriptImport} /> */}
         </div>
         <div className="navbar-items">
-          <DimensionSelector />
+          {/* <DimensionSelector /> */}
           <MediationOutlinedIcon color="primary" />
           <div className="navbar-item">
             <p className="navbar-title">Transcript Analyzer</p>

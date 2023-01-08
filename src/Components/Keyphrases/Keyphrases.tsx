@@ -3,9 +3,11 @@ import React from 'react';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import KeyphraseList from '../KeyphraseList/KeyphraseList';
 import { ITranscriptData } from 'src/Services/types';
-import IconButton from '@mui/material/IconButton';
-import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
-import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
+
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
 const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeClick: (string) => void; currentTimeFrame: number | null; selectedKeyword: string | null }) => {
   let keyphrasesSelected = Object.values(props.transcriptData.keyphrases.dimensions.time).flat();
@@ -64,12 +66,18 @@ const Keyphrases = (props: { transcriptData: ITranscriptData; handleTimeframeCli
           <h1 className="keyphrases-top-desc">Short summary sentences describing the discussion</h1>
         </div>
         <div className="keyphrases-top-buttons">
-          <IconButton aria-label="upload picture" component="label" onClick={() => props.handleTimeframeClick('PREVIOUS')}>
-            <ChevronLeftOutlinedIcon />
-          </IconButton>
-          <IconButton aria-label="upload picture" component="label" onClick={() => props.handleTimeframeClick('NEXT')}>
-            <ChevronRightOutlinedIcon />
-          </IconButton>
+          <Stack direction="column" spacing={2} justifyContent="center" alignItems="center">
+            <Stack direction="row" spacing={2}>
+              <Button aria-label="upload picture" color="inherit" variant="outlined" size="small" onClick={() => props.handleTimeframeClick('PREVIOUS')}>
+                Prev. Frame
+                <ChevronLeftIcon fontSize="medium" />
+              </Button>
+              <Button aria-label="upload picture" color="inherit" component="label" variant="outlined" size="small" onClick={() => props.handleTimeframeClick('NEXT')}>
+                <ChevronRightIcon fontSize="medium" />
+                Next Frame
+              </Button>
+            </Stack>
+          </Stack>
         </div>
       </div>
       <div className="keyphrases-bottom">

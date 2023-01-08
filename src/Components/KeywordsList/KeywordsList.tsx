@@ -5,7 +5,7 @@ const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-const KeywordsList = (props: { handleKeywordClick: (keyword: any) => void; selectedKeywords: string[]; selectedKeyword: string | null }) => {
+const KeywordsList = (props: { handleKeywordClick: (keyword: any, type: any) => void; selectedKeywords: string[]; selectedKeyword: string | null }) => {
   return (
     <Paper
       sx={{
@@ -26,7 +26,7 @@ const KeywordsList = (props: { handleKeywordClick: (keyword: any) => void; selec
       {props.selectedKeywords.map((data, key) => {
         return (
           <ListItem key={key}>
-            <Chip label={data} variant={data === props.selectedKeyword ? 'filled' : 'outlined'} onClick={() => props.handleKeywordClick(data)} sx={{
+            <Chip label={data} variant={data === props.selectedKeyword ? 'filled' : 'outlined'} onClick={() => props.handleKeywordClick(data, 'Keyword')} sx={{
               fontSize: data.split(' ').length > 4 ? '0.7rem' : '0.8125rem',
               maxWidth: '20vw'
             }}/>

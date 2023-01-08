@@ -10,7 +10,7 @@ const SentimentChart = (props) => {
   return (
     <div className='sentiment-chart'>
       <div className="sentiment-chart-title">Sentiment vs. Speaker changes</div>
-      <div className="sentiment-chart-desc">Number of positive & negative sentences vs. Switches between monologue and dialogue </div>
+      <div className="sentiment-chart-desc">Sentiment scores vs. number of speaker changes, aggregated per minute </div>
       <Chart series={props.sentimentSeries} color={theme.charts.sentiment.one} currentTimeFrame={props.currentTimeFrame} formatterLength={1}/>
       <Chart series={props.heatnessSeries} color={theme.charts.sentiment.four} currentTimeFrame={props.currentTimeFrame} formatterLength={0}/>
       {/* <ApexChart transcriptData={props.transcriptData} currentTimeFrame={props.currentTimeFrame}/> */}

@@ -31,3 +31,6 @@
 .keyphrases-top {
     padding-top: 10px;
 }
+.keyphrases-top-buttons {
+  color: var(--card_title_color);
+}

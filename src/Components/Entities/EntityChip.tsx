@@ -7,7 +7,7 @@ const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-const EntityChip = (props: { entityGroups: object; selectedEntities: number | null; handleKeywordClick: (keyword: any) => void }) => {
+const EntityChip = (props: { entityGroups: object; selectedEntities: number | null; handleKeywordClick: (keyword: any, type: any) => void }) => {
   const theme = useTheme();
   const backgroundColorMap = {
     PER: theme.charts.blueMono.one,
@@ -41,7 +41,7 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
             border: data.entity_group === 'PER' && !data.in_speakers ? '3px double white'  : null
           }}
           variant='filled'
-          onClick={() => props.handleKeywordClick(data.word)}
+          onClick={() => props.handleKeywordClick(data.word, 'Entity')}
         ></Chip>
       </ListItem>
     );

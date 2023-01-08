@@ -21,11 +21,16 @@ const toNetworkGraph = (transcript, speakerSubset) => {
     });
     return { id, edgesForSpeaker };
   });
+
   const edges = edgesPerSpeaker.flatMap((speaker) => {
     const connections = speaker.edgesForSpeaker.reduce((r, c) => ((r[c] = (r[c] || 0) + 1), r), {});
+
     return Object.keys(connections).map((key) => {
-      const opacity = !speakerSubset || speakerSubset.includes(speaker.id) ? 0.2 : 0.01;
-      return { from: speaker.id, to: Number(key), value: connections[key], color: { opacity } };
+      if (speakerSubset) {
+        return { from: speaker.id, to: Number(key), value: connections[key], color: { opacity: 0.0 } };
+      } else {
+        return { from: speaker.id, to: Number(key), value: connections[key], color: { opacity: 0.2 } };
+      }
     });
   });
   return { nodes, edges };

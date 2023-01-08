@@ -9,7 +9,7 @@ const Entities = (props: {
   transcriptData: ITranscriptData;
   currentTimeFrame: number | null;
   setSelectedEntities: (number) => void;
-  handleKeywordClick: (keyword: any) => void;
+  handleKeywordClick: (keyword: any, type:any) => any;
   selectedEntities: number | null;
 }) => {
   let entityGroups;

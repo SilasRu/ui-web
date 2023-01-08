@@ -27,6 +27,7 @@ const Template = () => {
   const [currentTimeFrame, setCurrentTimeFrame] = React.useState<number | null>(null);
   const [selectedEntities, setSelectedEntities] = React.useState<number | null>(null);
   const [selectedKeyword, setSelectedKeyword] = React.useState<string | null>(null);
+  const [selectedKeywordType, setSelectedKeywordType] = React.useState<string | null>(null);
   const [transcriptName, setTranscriptName] = React.useState('ES2002b');
   const [sentimentSeries, setSentimentSeries] = React.useState({});
   const [heatnessSeries, setHeatnessSeries] = React.useState({});
@@ -69,11 +70,13 @@ const Template = () => {
     }
   };
 
-  const handleKeywordClick = (event) => {
+  const handleKeywordClick = (event, type) => {
     if (typeof event === 'string') {
       setSelectedKeyword(event);
-    } else if (event.target.nodeName !== 'SPAN') {
+      setSelectedKeywordType(type);
+    } else if (event?.target?.nodeName !== 'SPAN') {
       setSelectedKeyword(null);
+      setSelectedKeywordType(null);
     }
   };
 
@@ -92,7 +95,7 @@ const Template = () => {
           <div className="home-container">
             <Navbar handleTranscriptImport={handleTranscriptImport} />
             <div className="home-top">
-              {selectedKeyword || currentTimeFrame !== null? <FilterCard selectedKeyword={selectedKeyword} currentTimeFrame={currentTimeFrame} handleFilterReset={handleFilterReset}/> : <SummaryCard transcriptData={transcriptData} />}
+              {selectedKeyword || currentTimeFrame !== null? <FilterCard selectedKeyword={selectedKeyword} selectedKeywordType={selectedKeywordType} currentTimeFrame={currentTimeFrame} handleFilterReset={handleFilterReset}/> : <SummaryCard transcriptData={transcriptData} />}
               <Entities
                 transcriptData={transcriptData}
                 currentTimeFrame={currentTimeFrame}

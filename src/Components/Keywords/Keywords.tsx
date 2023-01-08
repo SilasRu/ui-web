@@ -4,7 +4,7 @@ import * as React from 'react';
 import { ITranscriptData } from 'src/Services/types';
 import KeywordsList from '../KeywordsList/KeywordsList';
 
-const Keywords = (props: { transcriptData: ITranscriptData; currentTimeFrame: number | null; handleKeywordClick: (keyword: any) => void ; selectedKeyword: string | null}) => {
+const Keywords = (props: { transcriptData: ITranscriptData; currentTimeFrame: number | null; handleKeywordClick: (keyword: any, type: any) => void ; selectedKeyword: string | null}) => {
   let selectedKeywords =
     props.currentTimeFrame !== null ? props.transcriptData.keywords.dimensions.time[props.currentTimeFrame] : Object.values(props.transcriptData.keywords.dimensions.time).flat();
   selectedKeywords = _.uniq(selectedKeywords)

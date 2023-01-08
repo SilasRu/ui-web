@@ -64,9 +64,10 @@ const Chart = (props) => {
         enabled: false,
       },
       labels: {
-        formatter: function (val) {
-          return parseInt(val).toFixed(0);
-        },
+        formatter: function (value) {
+          const val = parseInt(value) * 2
+          return val < 10 ? `0${val}:00` : `${val}:00`
+        }, 
       },
 
     },

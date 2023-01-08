@@ -15,7 +15,6 @@ const SpeakerNetwork = (props: { transcriptData: ITranscriptData; currentTimeFra
     speakerSubset = props.transcriptData.transcript.speaker_info.filter(i=>uniqSpeakers.includes(i.name)).map(i=>i.id)
   }
   const speakerGraphData = toNetworkGraph(props.transcriptData.transcript, speakerSubset)
-
   return (
     <div className="speaker-network">
       <div className="speaker-network-top">

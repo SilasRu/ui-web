@@ -2,6 +2,7 @@ import './SummaryCard.css';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
+import RecordVoiceOverOutlinedIcon from '@mui/icons-material/RecordVoiceOverOutlined';
 import { ITranscriptData } from 'src/Services/types';
 
 const SummaryCard = (props: {transcriptData: ITranscriptData}) => {
@@ -40,7 +41,7 @@ const SummaryCard = (props: {transcriptData: ITranscriptData}) => {
             <span className="summary-card-bottom-left-desc">Speaker turns</span>
           </div>
           <div className="summary-card-bottom-right">
-            <AutorenewOutlinedIcon className="summary-card-icon" />
+            <RecordVoiceOverOutlinedIcon className="summary-card-icon" />
           </div>
         </div>
       </div>

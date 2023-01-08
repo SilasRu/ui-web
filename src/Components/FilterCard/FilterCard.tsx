@@ -1,6 +1,6 @@
 import React from 'react';
 import './FilterCard.css';
-import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,7 +17,7 @@ const FilterCard = (props) => {
           <div className="filter-card-bottom-item">
             <div className="filter-card-bottom-left">
               <span className="filter-card-bottom-left-number">Time frame</span>
-              <span className="filter-card-bottom-left-desc">{props.currentTimeFrame}</span>
+              <span className="filter-card-bottom-left-desc">Minute {2 * props.currentTimeFrame}:00 - {2 * (props.currentTimeFrame + 1)}:00</span>
             </div>
           </div>
         ) : (
@@ -26,7 +26,7 @@ const FilterCard = (props) => {
         {props.selectedKeyword ? (
           <div className="filter-card-bottom-item">
             <div className="filter-card-bottom-left">
-              <span className="filter-card-bottom-left-number">Keyword</span>
+              <span className="filter-card-bottom-left-number">{props.selectedKeywordType}</span>
               <Chip label={props.selectedKeyword} />
             </div>
           </div>
