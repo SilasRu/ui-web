@@ -31,7 +31,7 @@ const Template = () => {
   const [transcriptName, setTranscriptName] = React.useState('ES2002b');
   const [sentimentSeries, setSentimentSeries] = React.useState({});
   const [heatnessSeries, setHeatnessSeries] = React.useState({});
-  console.log(transcriptData)
+
   React.useEffect(() => {
     dataApi.fetchAll(transcriptName).then((res) => {
       setTranscriptData(res);
