@@ -5,14 +5,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Highlighter from 'react-highlight-words';
 import ScrollDialog from './ScrollDialog';
+import { useTracking } from 'react-tracking';
 
 import { ITranscriptData } from 'src/Services/types';
 
 const KeyphraseList = (props: { transcriptData: ITranscriptData; selectedKeyword: string | null; keyphrasesSelected: string[]; contextSelected: string[] }) => {
+  const tracking = useTracking()
   const [open, setOpen] = React.useState(false);
   const [dialogueContent, setDialogueContent] = React.useState<string>('Lorem Ipsum');
 
   const handleClickOpen = (sentenceKey: number) => () => {
+    tracking.trackEvent({ action: 'contextClick' })
     setOpen(true);
     setDialogueContent(props.contextSelected[sentenceKey]);
   };
@@ -40,7 +43,9 @@ const KeyphraseList = (props: { transcriptData: ITranscriptData; selectedKeyword
   }
 
   return (
-    <List sx={{ width: '100%', maxWidth: '100%', overflow: 'auto', maxHeight: '260px', bgcolor: '#dddddd40', borderRadius: '10px' }}>
+    <List 
+    onScroll={()=> tracking.trackEvent({ action: 'keyphraseScroll' })}
+    sx={{ width: '100%', maxWidth: '100%', overflow: 'auto', maxHeight: '260px', bgcolor: '#dddddd40', borderRadius: '10px' }}>
       <ScrollDialog open={open} handleClose={handleClose} contextTurns={contextTurns} />
       {props.keyphrasesSelected.map((sentence, key) => {
         return (

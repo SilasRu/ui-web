@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import { styled, useTheme } from '@mui/material/styles';
+import { useTracking } from 'react-tracking';
 
 const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
@@ -27,6 +28,10 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
   const entityGroupToDisplay = props.selectedEntities !== null ? props.entityGroups[groups[props.selectedEntities]] : _.uniqBy(Object.values(props.entityGroups).flat(), 'word');
   const s1 = _.sortBy(entityGroupToDisplay, (o) => o.in_speakers && o.entity_group === 'PER');
   const sortedChips = _.sortBy(s1, (o) => o.entity_group !== 'PER');
+
+
+  const tracking = useTracking()
+
   const chips = sortedChips.map((data, key) => {
 
     return (
@@ -41,7 +46,9 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
             border: data.entity_group === 'PER' && !data.in_speakers ? '3px double white'  : null
           }}
           variant='filled'
-          onClick={() => props.handleKeywordClick(data.word, 'Entity')}
+          onClick={() => {
+            tracking.trackEvent({ action: 'entityClick' })
+            return props.handleKeywordClick(data.word, 'Entity')}}
         ></Chip>
       </ListItem>
     );
@@ -50,6 +57,7 @@ const EntityChip = (props: { entityGroups: object; selectedEntities: number | nu
   return (
     <div className="entity-chips">
       <Paper
+        onScroll={()=> tracking.trackEvent({ action: 'entityScroll' })}
         sx={{
           display: 'flex',
           justifyContent: 'flex-start',
