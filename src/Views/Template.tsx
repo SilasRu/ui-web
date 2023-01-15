@@ -141,7 +141,14 @@ const Template = () => {
 
 const Analyzer = track(
   {app: 'analyzer'},
-  {dispatch: (data) => console.log(`${platform.os}!${new Date().toISOString()}: ${JSON.stringify(data)}`)}
+  {dispatch: (data) => {
+    const log = `${platform.os}!${new Date().toISOString()}: ${JSON.stringify(data)}`
+    fetch('http://172.31.0.3:3001/logs', {
+      method: 'POST',
+      body: JSON.stringify(log),
+      headers: { 'Content-Type': 'application/json' },
+    }).then(r=>(r))
+  }}
 )(Template)
 
 export default Analyzer;
