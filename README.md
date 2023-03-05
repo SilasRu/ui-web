@@ -2,14 +2,16 @@
 
 This is a React project boostrapped with bun.
 
-### Development
+### Local Dev
 
 First, run the development server.
 
 ```
 bun dev
 ```
+ ### Docker
+```
+docker build . -t sr/ma-frontend
 
-Open http://localhost:3000 with your browser to see the result.
-
-You can start editing the page by modifying src/App.jsx. The page auto-updates as you edit the file.
+docker run -rm -ti -p 3000:3000 --env PORT=3000 sr/ma-frontend
+```
